@@ -1,0 +1,125 @@
+.add-expense-page {
+  min-height: 100vh;
+  padding: 50px;
+  background: #f5f7fb;
+  font-family: Arial, sans-serif;
+  color: #172033;
+}
+
+.expense-header {
+  max-width: 700px;
+  margin: 0 auto 25px;
+}
+
+.expense-header h1 {
+  margin-bottom: 8px;
+}
+
+.expense-header p {
+  color: #667085;
+}
+
+.expense-form {
+  max-width: 700px;
+  margin: auto;
+  background: white;
+  padding: 35px;
+  border-radius: 15px;
+  border: 1px solid #e5e9f2;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #d8dee9;
+  border-radius: 8px;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.form-group textarea {
+  height: 110px;
+  resize: vertical;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.cancel-btn,
+.save-expense-btn {
+  padding: 13px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.cancel-btn {
+  background: white;
+  border: 1px solid #d8dee9;
+}
+
+.save-expense-btn {
+  background: #061329;
+  color: white;
+  border: none;
+}
+/* ========================================
+   CUSTOM CATEGORY
+======================================== */
+
+.custom-category-input {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #172033;
+  font-size: 14px;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+.custom-category-input::placeholder {
+  color: #94a3b8;
+}
+
+.custom-category-input:focus {
+  border-color: #126cff;
+  box-shadow: 0 0 0 3px rgba(18, 108, 255, 0.12);
+}
+
+/* ========================================
+   DARK MODE
+======================================== */
+
+body.dark-mode .custom-category-input {
+  background: #172033 !important;
+  border-color: #334155 !important;
+  color: #f8fafc !important;
+}
+
+body.dark-mode .custom-category-input::placeholder {
+  color: #64748b !important;
+}
+
+body.dark-mode .custom-category-input:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15) !important;
+}

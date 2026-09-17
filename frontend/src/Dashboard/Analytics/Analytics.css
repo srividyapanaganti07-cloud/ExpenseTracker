@@ -1,0 +1,461 @@
+/* =========================================================
+   ANALYTICS PAGE
+   ========================================================= */
+
+.analytics-page {
+  min-height: 100vh;
+  padding: 35px;
+  background: #f5f7fb;
+  font-family: Arial, sans-serif;
+  color: #172033;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.analytics-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.analytics-header h1 {
+  margin: 0 0 8px;
+  font-size: 32px;
+}
+
+.analytics-header p {
+  margin: 0;
+  color: #667085;
+}
+
+.analytics-back-btn {
+  text-decoration: none;
+  background: #061329;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+
+/* =========================================================
+   SUMMARY
+   ========================================================= */
+
+.analytics-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.analytics-card {
+  background: white;
+  border: 1px solid #e5e9f2;
+  border-radius: 14px;
+  padding: 24px;
+}
+
+.analytics-icon {
+  font-size: 27px;
+}
+
+.analytics-card p {
+  color: #667085;
+  margin: 15px 0 7px;
+}
+
+.analytics-card h2 {
+  margin: 0;
+  font-size: 25px;
+}
+
+
+/* =========================================================
+   GRID
+   ========================================================= */
+
+.analytics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+
+/* =========================================================
+   BOX
+   ========================================================= */
+
+.analytics-box {
+  background: white;
+  border: 1px solid #e5e9f2;
+  border-radius: 14px;
+  padding: 28px;
+}
+
+.analytics-box-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.analytics-box-header h2 {
+  margin: 0 0 6px;
+  font-size: 21px;
+}
+
+.analytics-box-header p {
+  margin: 0;
+  color: #667085;
+}
+
+
+/* =========================================================
+   COMPARISON
+   ========================================================= */
+
+.comparison-item {
+  margin-bottom: 25px;
+}
+
+.comparison-item:last-child {
+  margin-bottom: 0;
+}
+
+.comparison-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 9px;
+}
+
+.comparison-label span {
+  color: #667085;
+}
+
+.comparison-track {
+  height: 15px;
+  background: #edf0f4;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.comparison-fill {
+  height: 100%;
+  border-radius: 20px;
+  transition: width 0.5s ease;
+}
+
+.income-fill {
+  background: #16834a;
+}
+
+.expense-fill {
+  background: #d64545;
+}
+
+
+/* =========================================================
+   BUDGET
+   ========================================================= */
+
+.budget-analytics-track {
+  height: 18px;
+  background: #edf0f4;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.budget-analytics-fill {
+  height: 100%;
+  background: #061329;
+  border-radius: 20px;
+  transition: width 0.5s ease;
+}
+
+.budget-analytics-fill.budget-over {
+  background: #d64545;
+}
+
+.budget-analytics-details {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  color: #667085;
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   CATEGORY
+   ========================================================= */
+
+.category-analysis {
+  margin-bottom: 25px;
+}
+
+.analytics-category {
+  margin-bottom: 23px;
+}
+
+.analytics-category:last-child {
+  margin-bottom: 0;
+}
+
+.analytics-category-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 9px;
+}
+
+.analytics-category-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.analytics-category-name span {
+  font-size: 20px;
+}
+
+.category-progress {
+  height: 11px;
+  background: #edf0f4;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.category-progress-fill {
+  height: 100%;
+  background: #061329;
+  border-radius: 20px;
+  transition: width 0.5s ease;
+}
+
+.analytics-category small {
+  display: block;
+  margin-top: 6px;
+  color: #667085;
+}
+
+
+/* =========================================================
+   INSIGHTS
+   ========================================================= */
+
+.analytics-insights {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.insight-card {
+  background: white;
+  border: 1px solid #e5e9f2;
+  border-radius: 14px;
+  padding: 22px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.insight-card > span {
+  font-size: 30px;
+}
+
+.insight-card p {
+  margin: 0 0 5px;
+  color: #667085;
+}
+
+.insight-card h3 {
+  margin: 0 0 4px;
+  font-size: 20px;
+}
+
+.insight-card small {
+  color: #667085;
+}
+
+
+/* =========================================================
+   EMPTY
+   ========================================================= */
+
+.analytics-empty {
+  text-align: center;
+  padding: 30px;
+}
+
+.analytics-empty h3 {
+  margin-bottom: 7px;
+}
+
+.analytics-empty p {
+  color: #667085;
+}
+
+.analytics-empty button {
+  margin-top: 10px;
+  padding: 11px 18px;
+  border: none;
+  border-radius: 8px;
+  background: #061329;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   ACTIONS
+   ========================================================= */
+
+.analytics-actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.analytics-action {
+  background: white;
+  border: 1px solid #e5e9f2;
+  border-radius: 12px;
+  padding: 18px;
+  text-decoration: none;
+  color: #172033;
+  text-align: center;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.analytics-action:hover {
+  transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   DARK MODE
+   ========================================================= */
+
+body.dark-mode .analytics-page {
+  background: #0b1220;
+  color: #e5e7eb;
+}
+
+body.dark-mode .analytics-header h1 {
+  color: #f8fafc;
+}
+
+body.dark-mode .analytics-header p {
+  color: #94a3b8;
+}
+
+body.dark-mode .analytics-back-btn {
+  background: #1e293b;
+  color: #f8fafc;
+}
+
+body.dark-mode .analytics-card,
+body.dark-mode .analytics-box,
+body.dark-mode .insight-card,
+body.dark-mode .analytics-action {
+  background: #111827;
+  border-color: #263244;
+  color: #e5e7eb;
+}
+
+body.dark-mode .analytics-card p,
+body.dark-mode .analytics-box-header p,
+body.dark-mode .comparison-label span,
+body.dark-mode .budget-analytics-details,
+body.dark-mode .analytics-category small,
+body.dark-mode .insight-card p,
+body.dark-mode .insight-card small {
+  color: #94a3b8;
+}
+
+body.dark-mode .analytics-card h2,
+body.dark-mode .analytics-box-header h2,
+body.dark-mode .insight-card h3 {
+  color: #f8fafc;
+}
+
+body.dark-mode .comparison-track,
+body.dark-mode .budget-analytics-track,
+body.dark-mode .category-progress {
+  background: #273244;
+}
+
+body.dark-mode .budget-analytics-fill,
+body.dark-mode .category-progress-fill {
+  background: #64748b;
+}
+
+body.dark-mode .analytics-action {
+  color: #e5e7eb;
+}
+
+body.dark-mode .analytics-action:hover {
+  background: #172033;
+}
+
+body.dark-mode .analytics-empty h3 {
+  color: #f8fafc;
+}
+
+body.dark-mode .analytics-empty p {
+  color: #94a3b8;
+}
+
+body.dark-mode .analytics-empty button {
+  background: #1e293b;
+  color: #f8fafc;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .analytics-summary {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .analytics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .analytics-insights {
+    grid-template-columns: 1fr;
+  }
+
+  .analytics-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .analytics-page {
+    padding: 20px;
+  }
+
+  .analytics-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .analytics-summary {
+    grid-template-columns: 1fr;
+  }
+}

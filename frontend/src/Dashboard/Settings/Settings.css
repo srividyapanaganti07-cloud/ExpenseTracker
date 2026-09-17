@@ -1,0 +1,468 @@
+* {
+  box-sizing: border-box;
+}
+
+.settings-page {
+  min-height: 100vh;
+  background: #f5f7fb;
+  padding: 35px;
+  font-family: Arial, sans-serif;
+  color: #172033;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.settings-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.settings-header h1 {
+  margin: 0;
+  font-size: 32px;
+  color: #061329;
+}
+
+.settings-header p {
+  margin-top: 8px;
+  color: #667085;
+}
+
+/* DASHBOARD BUTTON */
+
+.back-dashboard-btn {
+  border: none;
+  background: #061329;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.back-dashboard-btn:hover {
+  background: #102445;
+}
+
+/* =========================
+   SETTINGS SECTION
+========================= */
+
+.settings-section {
+  background: white;
+  border-radius: 14px;
+  padding: 25px;
+  margin-bottom: 22px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.settings-section-header {
+  margin-bottom: 10px;
+}
+
+.settings-section-header h2 {
+  margin: 0;
+  font-size: 21px;
+  color: #061329;
+}
+
+.settings-section-header p {
+  margin-top: 7px;
+  color: #667085;
+  font-size: 14px;
+}
+
+/* =========================
+   SETTINGS ITEMS
+========================= */
+
+.settings-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 20px 0;
+
+  border-bottom: 1px solid #edf0f4;
+
+  gap: 20px;
+
+  transition: border-color 0.3s ease;
+}
+
+.setting-item:last-child {
+  border-bottom: none;
+}
+
+.setting-item h3 {
+  margin: 0 0 6px;
+
+  font-size: 15px;
+
+  color: #172033;
+}
+
+.setting-item p {
+  margin: 0;
+
+  color: #667085;
+
+  font-size: 13px;
+
+  line-height: 1.5;
+}
+
+/* =========================
+   TOGGLE
+========================= */
+
+.switch {
+  position: relative;
+
+  width: 48px;
+  height: 26px;
+
+  flex-shrink: 0;
+}
+
+.switch input {
+  opacity: 0;
+
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+
+  inset: 0;
+
+  cursor: pointer;
+
+  background: #cbd5e1;
+
+  border-radius: 30px;
+
+  transition: 0.25s;
+}
+
+.slider::before {
+  content: "";
+
+  position: absolute;
+
+  width: 20px;
+  height: 20px;
+
+  left: 3px;
+  top: 3px;
+
+  background: white;
+
+  border-radius: 50%;
+
+  transition: 0.25s;
+
+  box-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.switch input:checked + .slider {
+  background: #061329;
+}
+
+.switch input:checked + .slider::before {
+  transform: translateX(22px);
+}
+
+/* =========================
+   ACCOUNT OPTIONS
+========================= */
+
+.account-options {
+  display: flex;
+
+  flex-direction: column;
+
+  margin-top: 15px;
+}
+
+.account-option {
+  text-decoration: none;
+
+  color: inherit;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding: 18px;
+
+  border: 1px solid #edf0f4;
+
+  border-radius: 9px;
+
+  margin-bottom: 12px;
+
+  transition: 0.2s;
+}
+
+.account-option:hover {
+  background: #f8fafc;
+
+  border-color: #d8dee9;
+}
+
+.account-option strong {
+  display: block;
+
+  color: #061329;
+
+  margin-bottom: 5px;
+}
+
+.account-option span {
+  color: #667085;
+
+  font-size: 13px;
+}
+
+.account-option .arrow {
+  color: #061329;
+
+  font-size: 20px;
+
+  font-weight: bold;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.settings-actions {
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 12px;
+
+  margin-bottom: 30px;
+}
+
+.reset-settings-btn,
+.save-settings-btn {
+  border: none;
+
+  padding: 12px 20px;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  font-weight: bold;
+}
+
+.reset-settings-btn {
+  background: #eef2f7;
+
+  color: #172033;
+}
+
+.save-settings-btn {
+  background: #061329;
+
+  color: white;
+}
+
+.reset-settings-btn:hover {
+  background: #e2e8f0;
+}
+
+.save-settings-btn:hover {
+  background: #102445;
+}
+
+/* ==================================================
+   DARK MODE
+================================================== */
+
+.settings-page.dark-theme {
+  background: #0f172a;
+
+  color: #e5e7eb;
+}
+
+.settings-page.dark-theme .settings-header h1 {
+  color: #f8fafc;
+}
+
+.settings-page.dark-theme .settings-header p {
+  color: #94a3b8;
+}
+
+.settings-page.dark-theme .settings-section {
+  background: #1e293b;
+
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.settings-page.dark-theme
+.settings-section-header h2 {
+  color: #f8fafc;
+}
+
+.settings-page.dark-theme
+.settings-section-header p {
+  color: #94a3b8;
+}
+
+.settings-page.dark-theme
+.setting-item {
+  border-bottom-color: #334155;
+}
+
+.settings-page.dark-theme
+.setting-item h3 {
+  color: #f8fafc;
+}
+
+.settings-page.dark-theme
+.setting-item p {
+  color: #94a3b8;
+}
+
+.settings-page.dark-theme
+.account-option {
+  background: #1e293b;
+
+  border-color: #334155;
+}
+
+.settings-page.dark-theme
+.account-option:hover {
+  background: #273449;
+}
+
+.settings-page.dark-theme
+.account-option strong {
+  color: #f8fafc;
+}
+
+.settings-page.dark-theme
+.account-option span {
+  color: #94a3b8;
+}
+
+.settings-page.dark-theme
+.reset-settings-btn {
+  background: #334155;
+
+  color: #f8fafc;
+}
+
+.settings-page.dark-theme
+.back-dashboard-btn {
+  background: #f8fafc;
+
+  color: #0f172a;
+}
+
+.settings-page.dark-theme
+.back-dashboard-btn:hover {
+  background: #e2e8f0;
+}
+
+/* Dark mode switch */
+
+.settings-page.dark-theme
+.switch input:checked + .slider {
+  background: #60a5fa;
+}
+
+/* ==================================================
+   COMPACT VIEW
+================================================== */
+
+.settings-page.compact-theme
+.settings-section {
+  padding: 17px;
+
+  margin-bottom: 12px;
+}
+
+.settings-page.compact-theme
+.setting-item {
+  padding: 11px 0;
+}
+
+.settings-page.compact-theme
+.settings-header {
+  margin-bottom: 18px;
+}
+
+.settings-page.compact-theme
+.settings-header h1 {
+  font-size: 28px;
+}
+
+.settings-page.compact-theme
+.settings-section-header {
+  margin-bottom: 5px;
+}
+
+.settings-page.compact-theme
+.account-option {
+  padding: 12px;
+
+  margin-bottom: 7px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 650px) {
+
+  .settings-page {
+    padding: 20px;
+  }
+
+  .settings-header {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 15px;
+  }
+
+  .setting-item {
+    align-items: flex-start;
+  }
+
+  .settings-actions {
+    flex-direction: column;
+  }
+
+  .reset-settings-btn,
+  .save-settings-btn {
+    width: 100%;
+  }
+}

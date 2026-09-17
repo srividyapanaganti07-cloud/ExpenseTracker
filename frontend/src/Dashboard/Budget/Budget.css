@@ -1,0 +1,435 @@
+
+/* =========================================================
+   BUDGET PAGE - NORMAL + DARK MODE
+   ========================================================= */
+
+.budget-page {
+  min-height: 100vh;
+  padding: 35px;
+  background: #f5f7fb;
+  font-family: Arial, sans-serif;
+  color: #172033;
+  box-sizing: border-box;
+}
+
+/* =========================
+   HEADER
+   ========================= */
+
+.budget-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.budget-header h1 {
+  margin: 0 0 8px;
+  font-size: 32px;
+}
+
+.budget-header p {
+  margin: 0;
+  color: #667085;
+}
+
+.back-dashboard {
+  text-decoration: none;
+  padding: 12px 18px;
+  border-radius: 8px;
+  background: #061329;
+  color: white;
+  font-weight: bold;
+}
+
+/* =========================
+   SUMMARY CARDS
+   ========================= */
+
+.budget-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.budget-card {
+  background: white;
+  border: 1px solid #e5e9f2;
+  border-radius: 14px;
+  padding: 25px;
+  box-sizing: border-box;
+}
+
+.budget-icon {
+  font-size: 28px;
+}
+
+.budget-card p {
+  color: #667085;
+  margin: 15px 0 8px;
+}
+
+.budget-card h2 {
+  margin: 0;
+  font-size: 27px;
+}
+
+/* =========================
+   MAIN BUDGET CONTAINER
+   ========================= */
+
+.budget-container {
+  background: white;
+  border: 1px solid #e5e9f2;
+  border-radius: 14px;
+  padding: 28px;
+  margin-bottom: 25px;
+  box-sizing: border-box;
+}
+
+.budget-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  gap: 20px;
+}
+
+.budget-section-header h2 {
+  margin: 0 0 6px;
+}
+
+.budget-section-header p {
+  margin: 0;
+  color: #667085;
+}
+
+.budget-section-header > strong {
+  font-size: 25px;
+  white-space: nowrap;
+}
+
+/* =========================
+   PROGRESS BAR
+   ========================= */
+
+.progress-background {
+  width: 100%;
+  height: 18px;
+  background: #e9edf3;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #061329;
+  border-radius: 20px;
+  transition: width 0.4s ease;
+}
+
+.progress-fill.over-budget {
+  background: #d64545;
+}
+
+.progress-details {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  color: #667085;
+  font-size: 14px;
+}
+
+.progress-details strong {
+  color: #172033;
+}
+
+/* =========================
+   STATUS MESSAGE
+   ========================= */
+
+.budget-status {
+  margin-top: 22px;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.budget-status.success {
+  background: #edf9f1;
+  color: #16834a;
+}
+
+.budget-status.warning {
+  background: #fff0f0;
+  color: #d64545;
+}
+
+/* =========================
+   BUDGET FORM
+   ========================= */
+
+.budget-form {
+  display: flex;
+  align-items: flex-end;
+  gap: 15px;
+}
+
+.budget-input-group {
+  flex: 1;
+  min-width: 0;
+}
+
+.budget-input-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.budget-input-group input {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #d8dee9;
+  border-radius: 8px;
+  outline: none;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.budget-input-group input:focus {
+  border-color: #061329;
+}
+
+.save-budget-btn {
+  padding: 13px 22px;
+  border: none;
+  border-radius: 8px;
+  background: #061329;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.save-budget-btn:hover {
+  opacity: 0.9;
+}
+
+/* =========================
+   QUICK ACTIONS
+   ========================= */
+
+.budget-actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.budget-action-card {
+  background: white;
+  border: 1px solid #e5e9f2;
+  border-radius: 12px;
+  padding: 20px;
+  text-decoration: none;
+  color: #172033;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: bold;
+  transition: 0.2s;
+  box-sizing: border-box;
+}
+
+.budget-action-card:hover {
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+   DARK MODE
+   ========================================================= */
+
+body.dark-mode .budget-page {
+  background: #0b1220 !important;
+  color: #e5e7eb !important;
+}
+
+/* Header */
+
+body.dark-mode .budget-header h1 {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .budget-header p {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .back-dashboard {
+  background: #1e293b !important;
+  color: #f8fafc !important;
+}
+
+/* Summary cards */
+
+body.dark-mode .budget-card {
+  background: #111827 !important;
+  border-color: #263244 !important;
+  color: #e5e7eb !important;
+}
+
+body.dark-mode .budget-card p {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .budget-card h2 {
+  color: #f8fafc !important;
+}
+
+/* Main container */
+
+body.dark-mode .budget-container {
+  background: #111827 !important;
+  border-color: #263244 !important;
+  color: #e5e7eb !important;
+}
+
+body.dark-mode .budget-section-header h2 {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .budget-section-header p {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .budget-section-header > strong {
+  color: #f8fafc !important;
+}
+
+/* Progress */
+
+body.dark-mode .progress-background {
+  background: #273244 !important;
+}
+
+body.dark-mode .progress-fill {
+  background: #64748b !important;
+}
+
+body.dark-mode .progress-fill.over-budget {
+  background: #d64545 !important;
+}
+
+body.dark-mode .progress-details {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .progress-details strong {
+  color: #cbd5e1 !important;
+}
+
+/* Status */
+
+body.dark-mode .budget-status.success {
+  background: #123321 !important;
+  color: #6ee7a1 !important;
+}
+
+body.dark-mode .budget-status.warning {
+  background: #351b1b !important;
+  color: #f87171 !important;
+}
+
+/* Form */
+
+body.dark-mode .budget-input-group label {
+  color: #cbd5e1 !important;
+}
+
+body.dark-mode .budget-input-group input {
+  background: #172033 !important;
+  border-color: #334155 !important;
+  color: #f8fafc !important;
+}
+
+body.dark-mode .budget-input-group input::placeholder {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .budget-input-group input:focus {
+  border-color: #64748b !important;
+}
+
+body.dark-mode .save-budget-btn {
+  background: #1e293b !important;
+  color: #f8fafc !important;
+}
+
+/* Quick actions */
+
+body.dark-mode .budget-action-card {
+  background: #111827 !important;
+  border-color: #263244 !important;
+  color: #f8fafc !important;
+}
+
+body.dark-mode .budget-action-card:hover {
+  background: #172033 !important;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 800px) {
+  .budget-page {
+    padding: 20px;
+  }
+
+  .budget-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .budget-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .budget-section-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .budget-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .save-budget-btn {
+    width: 100%;
+  }
+
+  .budget-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 500px) {
+  .budget-page {
+    padding: 15px;
+  }
+
+  .budget-container {
+    padding: 20px;
+  }
+
+  .budget-card {
+    padding: 20px;
+  }
+
+  .budget-header h1 {
+    font-size: 27px;
+  }
+}
+
+

@@ -1,0 +1,669 @@
+* {
+  box-sizing: border-box;
+}
+
+/* ========================================
+   REPORTS PAGE
+======================================== */
+
+.reports-page {
+  min-height: 100vh;
+  background: #f5f7fb;
+  padding: 35px;
+  font-family: Arial, sans-serif;
+  color: #172033;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ========================================
+   HEADER
+======================================== */
+
+.reports-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.reports-header h1 {
+  margin: 0;
+  font-size: 32px;
+  color: #061329;
+}
+
+.reports-header p {
+  margin-top: 8px;
+  color: #667085;
+}
+
+.back-dashboard-btn {
+  border: none;
+  background: #061329;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s ease;
+}
+
+.back-dashboard-btn:hover {
+  background: #102445;
+  transform: translateY(-1px);
+}
+
+/* ========================================
+   SUMMARY
+======================================== */
+
+.report-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.report-card {
+  background: white;
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.2s ease;
+}
+
+.report-card:hover {
+  transform: translateY(-2px);
+}
+
+.report-card span {
+  display: block;
+  color: #667085;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.report-card h2 {
+  margin: 0;
+  font-size: 27px;
+  color: #061329;
+}
+
+.report-card p {
+  margin: 8px 0 0;
+  color: #98a2b3;
+  font-size: 13px;
+}
+
+.income-card {
+  border-top: 4px solid #16a34a;
+}
+
+.expense-card {
+  border-top: 4px solid #dc2626;
+}
+
+.balance-card {
+  border-top: 4px solid #2563eb;
+}
+
+.transaction-card {
+  border-top: 4px solid #7c3aed;
+}
+
+/* ========================================
+   SECTIONS
+======================================== */
+
+.report-section {
+  background: white;
+  border-radius: 14px;
+  padding: 25px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.section-title h2 {
+  margin: 0;
+  font-size: 21px;
+  color: #061329;
+}
+
+.section-title p {
+  margin: 6px 0 0;
+  color: #667085;
+  font-size: 14px;
+}
+
+/* ========================================
+   FILTERS
+======================================== */
+
+.report-filters {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-group label {
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.filter-group select {
+  padding: 12px;
+  border: 1px solid #d8dee9;
+  border-radius: 8px;
+  background: white;
+  color: #172033;
+  outline: none;
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+.filter-group select:focus {
+  border-color: #061329;
+  box-shadow: 0 0 0 3px rgba(6, 19, 41, 0.08);
+}
+
+.reset-btn {
+  border: none;
+  background: #eef2f7;
+  color: #172033;
+  padding: 10px 16px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s ease;
+}
+
+.reset-btn:hover {
+  background: #e2e8f0;
+}
+
+/* ========================================
+   CATEGORY REPORT
+======================================== */
+
+.category-report {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.category-item {
+  width: 100%;
+}
+
+.category-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 9px;
+}
+
+.category-info div {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.category-info strong {
+  font-size: 14px;
+}
+
+.category-info span {
+  color: #667085;
+  font-size: 13px;
+}
+
+.progress-background {
+  height: 9px;
+  background: #edf0f5;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #061329;
+  border-radius: 20px;
+  transition: width 0.4s ease;
+}
+
+/* ========================================
+   EXPORT BUTTONS
+======================================== */
+
+.export-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.export-btn,
+.print-btn {
+  border: none;
+  padding: 11px 15px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s ease;
+}
+
+.export-btn {
+  background: #061329;
+  color: white;
+}
+
+.print-btn {
+  background: #eef2f7;
+  color: #172033;
+}
+
+.export-btn:hover {
+  background: #102445;
+  transform: translateY(-1px);
+}
+
+.print-btn:hover {
+  background: #e2e8f0;
+}
+
+/* ========================================
+   TABLE
+======================================== */
+
+.report-table {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.report-table-header,
+.report-table-row {
+  min-width: 850px;
+  display: grid;
+  grid-template-columns:
+    1.1fr
+    1fr
+    1.2fr
+    2fr
+    1.2fr;
+  gap: 15px;
+  align-items: center;
+}
+
+.report-table-header {
+  background: #f7f8fa;
+  padding: 15px;
+  font-weight: bold;
+  color: #475467;
+  border-radius: 8px;
+}
+
+.report-table-row {
+  padding: 16px 15px;
+  border-bottom: 1px solid #edf0f4;
+  font-size: 14px;
+  transition: background 0.2s ease;
+}
+
+.report-table-row:hover {
+  background: #fafbfc;
+}
+
+/* ========================================
+   TRANSACTION TYPE
+======================================== */
+
+.type-income,
+.type-expense {
+  display: inline-block;
+  padding: 5px 9px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.type-income {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.type-expense {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+/* ========================================
+   AMOUNT
+======================================== */
+
+.amount-income {
+  color: #16a34a;
+}
+
+.amount-expense {
+  color: #dc2626;
+}
+
+/* ========================================
+   EMPTY REPORT
+======================================== */
+
+.empty-report {
+  text-align: center;
+  padding: 45px 20px;
+}
+
+.empty-report h3 {
+  margin-bottom: 8px;
+  color: #344054;
+}
+
+.empty-report p {
+  color: #667085;
+}
+
+.add-report-btn {
+  margin-top: 15px;
+  background: #061329;
+  color: white;
+  border: none;
+  padding: 11px 18px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s ease;
+}
+
+.add-report-btn:hover {
+  background: #102445;
+  transform: translateY(-1px);
+}
+
+/* ========================================
+   DARK MODE
+======================================== */
+
+body.dark-mode .reports-page {
+  background: #0b1220 !important;
+  color: #e5e7eb !important;
+}
+
+/* Header */
+
+body.dark-mode .reports-header h1 {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .reports-header p {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .back-dashboard-btn {
+  background: #2563eb !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .back-dashboard-btn:hover {
+  background: #3b82f6 !important;
+}
+
+/* Summary Cards */
+
+body.dark-mode .report-card {
+  background: #111827 !important;
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.25) !important;
+}
+
+body.dark-mode .report-card span {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .report-card h2 {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .report-card p {
+  color: #64748b !important;
+}
+
+/* Sections */
+
+body.dark-mode .report-section {
+  background: #111827 !important;
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.22) !important;
+}
+
+body.dark-mode .section-title h2 {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .section-title p {
+  color: #94a3b8 !important;
+}
+
+/* Filters */
+
+body.dark-mode .filter-group label {
+  color: #cbd5e1 !important;
+}
+
+body.dark-mode .filter-group select {
+  background: #172033 !important;
+  color: #f8fafc !important;
+  border-color: #334155 !important;
+}
+
+body.dark-mode .filter-group select:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15) !important;
+}
+
+body.dark-mode .reset-btn {
+  background: #1e293b !important;
+  color: #e2e8f0 !important;
+}
+
+body.dark-mode .reset-btn:hover {
+  background: #334155 !important;
+}
+
+/* Category */
+
+body.dark-mode .category-info strong {
+  color: #f1f5f9 !important;
+}
+
+body.dark-mode .category-info span {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .progress-background {
+  background: #263244 !important;
+}
+
+body.dark-mode .progress-fill {
+  background: #3b82f6 !important;
+}
+
+/* Export */
+
+body.dark-mode .export-btn {
+  background: #2563eb !important;
+  color: white !important;
+}
+
+body.dark-mode .export-btn:hover {
+  background: #3b82f6 !important;
+}
+
+body.dark-mode .print-btn {
+  background: #1e293b !important;
+  color: #e2e8f0 !important;
+}
+
+body.dark-mode .print-btn:hover {
+  background: #334155 !important;
+}
+
+/* Table */
+
+body.dark-mode .report-table-header {
+  background: #1e293b !important;
+  color: #cbd5e1 !important;
+}
+
+body.dark-mode .report-table-row {
+  border-bottom-color: #263244 !important;
+  color: #e2e8f0 !important;
+}
+
+body.dark-mode .report-table-row:hover {
+  background: #172033 !important;
+}
+
+/* Transaction Type */
+
+body.dark-mode .type-income {
+  background: rgba(22, 163, 74, 0.18) !important;
+  color: #4ade80 !important;
+}
+
+body.dark-mode .type-expense {
+  background: rgba(220, 38, 38, 0.18) !important;
+  color: #f87171 !important;
+}
+
+/* Amount */
+
+body.dark-mode .amount-income {
+  color: #4ade80 !important;
+}
+
+body.dark-mode .amount-expense {
+  color: #f87171 !important;
+}
+
+/* Empty */
+
+body.dark-mode .empty-report h3 {
+  color: #e2e8f0 !important;
+}
+
+body.dark-mode .empty-report p {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .add-report-btn {
+  background: #2563eb !important;
+  color: white !important;
+}
+
+body.dark-mode .add-report-btn:hover {
+  background: #3b82f6 !important;
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 1000px) {
+  .report-summary {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .report-filters {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 650px) {
+  .reports-page {
+    padding: 20px;
+  }
+
+  .reports-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .report-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .section-title {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .export-buttons {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .export-btn,
+  .print-btn {
+    width: 100%;
+  }
+}
+
+/* ========================================
+   PRINT
+======================================== */
+
+@media print {
+  .reports-page {
+    background: white !important;
+    color: #172033 !important;
+    padding: 10px;
+  }
+
+  .back-dashboard-btn,
+  .reset-btn,
+  .export-buttons,
+  .add-report-btn {
+    display: none;
+  }
+
+  .report-section,
+  .report-card {
+    background: white !important;
+    color: #172033 !important;
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+
+  .reports-header {
+    margin-bottom: 15px;
+  }
+
+  .reports-header h1,
+  .section-title h2,
+  .report-card h2 {
+    color: #061329 !important;
+  }
+}

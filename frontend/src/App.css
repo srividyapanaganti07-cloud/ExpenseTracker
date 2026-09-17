@@ -1,0 +1,856 @@
+
+/* =========================================================
+   EXPENSE TRACKER - GLOBAL APP CSS
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f5f7fb;
+  color: #172033;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+
+/* =========================================================
+   GLOBAL SMOOTH TRANSITIONS
+   ========================================================= */
+
+body,
+body * {
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+/* =========================================================
+   GLOBAL LINKS
+   ========================================================= */
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+/* =========================================================
+   GLOBAL BUTTONS
+   ========================================================= */
+
+button {
+  font-family: inherit;
+}
+
+
+/* =========================================================
+   GLOBAL FORM ELEMENTS
+   ========================================================= */
+
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+
+/* =========================================================
+   GLOBAL DARK MODE
+   ========================================================= */
+
+body.dark-mode {
+  background: #0f172a;
+  color: #e5e7eb;
+}
+
+
+/* =========================================================
+   DARK MODE - COMMON PAGE BACKGROUNDS
+   ========================================================= */
+
+body.dark-mode .home-page,
+body.dark-mode .dashboard-page,
+body.dark-mode .transactions-page,
+body.dark-mode .analytics-page,
+body.dark-mode .budget-page,
+body.dark-mode .add-expense-page,
+body.dark-mode .profile-page,
+body.dark-mode .reports-page,
+body.dark-mode .security-page,
+body.dark-mode .settings-page {
+  background: #0f172a;
+  color: #e5e7eb;
+}
+
+
+/* =========================================================
+   DARK MODE - HEADINGS
+   ========================================================= */
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6 {
+  color: #f8fafc;
+}
+
+
+/* =========================================================
+   DARK MODE - PARAGRAPHS
+   ========================================================= */
+
+body.dark-mode p {
+  color: #94a3b8;
+}
+
+
+/* =========================================================
+   DARK MODE - COMMON TEXT
+   ========================================================= */
+
+body.dark-mode span {
+  color: inherit;
+}
+
+
+/* =========================================================
+   DARK MODE - CARDS
+   ========================================================= */
+
+body.dark-mode .card,
+body.dark-mode .dashboard-card,
+body.dark-mode .stat-card,
+body.dark-mode .expense-card,
+body.dark-mode .budget-card,
+body.dark-mode .chart-card,
+body.dark-mode .transaction-card,
+body.dark-mode .profile-card,
+body.dark-mode .profile-details,
+body.dark-mode .profile-statistics,
+body.dark-mode .settings-section,
+body.dark-mode .report-card,
+body.dark-mode .analytics-card,
+body.dark-mode .summary-card,
+body.dark-mode .info-card,
+body.dark-mode .section-card,
+body.dark-mode .content-card,
+body.dark-mode .white-card {
+  background: #1e293b;
+  color: #e5e7eb;
+  border-color: #334155;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================================================
+   DARK MODE - COMMON CARD HEADINGS
+   ========================================================= */
+
+body.dark-mode .card h1,
+body.dark-mode .card h2,
+body.dark-mode .card h3,
+body.dark-mode .dashboard-card h1,
+body.dark-mode .dashboard-card h2,
+body.dark-mode .dashboard-card h3,
+body.dark-mode .stat-card h1,
+body.dark-mode .stat-card h2,
+body.dark-mode .stat-card h3,
+body.dark-mode .budget-card h1,
+body.dark-mode .budget-card h2,
+body.dark-mode .budget-card h3,
+body.dark-mode .chart-card h1,
+body.dark-mode .chart-card h2,
+body.dark-mode .chart-card h3 {
+  color: #f8fafc;
+}
+
+
+/* =========================================================
+   DARK MODE - INPUTS
+   ========================================================= */
+
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea {
+  background: #1e293b;
+  color: #f8fafc;
+  border-color: #475569;
+}
+
+
+/* =========================================================
+   DARK MODE - INPUT FOCUS
+   ========================================================= */
+
+body.dark-mode input:focus,
+body.dark-mode select:focus,
+body.dark-mode textarea:focus {
+  background: #1e293b;
+  color: #ffffff;
+  border-color: #60a5fa;
+  outline: none;
+}
+
+
+/* =========================================================
+   DARK MODE - PLACEHOLDER
+   ========================================================= */
+
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+  color: #94a3b8;
+}
+
+
+/* =========================================================
+   DARK MODE - SELECT OPTIONS
+   ========================================================= */
+
+body.dark-mode option {
+  background: #1e293b;
+  color: #f8fafc;
+}
+
+
+/* =========================================================
+   DARK MODE - TABLE
+   ========================================================= */
+
+body.dark-mode table {
+  background: #1e293b;
+  color: #e5e7eb;
+  border-color: #334155;
+}
+
+
+/* TABLE HEADER */
+
+body.dark-mode th {
+  background: #334155;
+  color: #f8fafc;
+  border-color: #475569;
+}
+
+
+/* TABLE DATA */
+
+body.dark-mode td {
+  background: #1e293b;
+  color: #e5e7eb;
+  border-color: #334155;
+}
+
+
+/* TABLE ROW HOVER */
+
+body.dark-mode tr:hover td {
+  background: #273449;
+}
+
+
+/* =========================================================
+   DARK MODE - COMMON BORDERS
+   ========================================================= */
+
+body.dark-mode .border,
+body.dark-mode .divider,
+body.dark-mode .profile-divider {
+  border-color: #334155;
+}
+
+
+/* =========================================================
+   DARK MODE - ACCOUNT / LIST ITEMS
+   ========================================================= */
+
+body.dark-mode .account-option,
+body.dark-mode .setting-item,
+body.dark-mode .list-item,
+body.dark-mode .transaction-item {
+  border-color: #334155;
+}
+
+
+/* =========================================================
+   DARK MODE - ACCOUNT OPTION
+   ========================================================= */
+
+body.dark-mode .account-option {
+  background: #1e293b;
+  color: #e5e7eb;
+}
+
+
+body.dark-mode .account-option:hover {
+  background: #273449;
+  border-color: #475569;
+}
+
+
+body.dark-mode .account-option strong {
+  color: #f8fafc;
+}
+
+
+body.dark-mode .account-option span {
+  color: #94a3b8;
+}
+
+
+/* =========================================================
+   DARK MODE - BUTTONS
+   ========================================================= */
+
+body.dark-mode .reset-settings-btn {
+  background: #334155;
+  color: #f8fafc;
+}
+
+
+body.dark-mode .reset-settings-btn:hover {
+  background: #475569;
+}
+
+
+body.dark-mode .save-settings-btn {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+
+body.dark-mode .save-settings-btn:hover {
+  background: #e2e8f0;
+}
+
+
+/* =========================================================
+   DARK MODE - DASHBOARD BUTTONS
+   ========================================================= */
+
+body.dark-mode .primary-btn,
+body.dark-mode .save-btn,
+body.dark-mode .save-expense-btn {
+  background: #3b82f6;
+  color: white;
+}
+
+
+body.dark-mode .primary-btn:hover,
+body.dark-mode .save-btn:hover,
+body.dark-mode .save-expense-btn:hover {
+  background: #2563eb;
+}
+
+
+/* =========================================================
+   DARK MODE - SECONDARY BUTTONS
+   ========================================================= */
+
+body.dark-mode .secondary-btn,
+body.dark-mode .cancel-btn,
+body.dark-mode .cancel-profile-btn {
+  background: #334155;
+  color: #f8fafc;
+  border-color: #475569;
+}
+
+
+body.dark-mode .secondary-btn:hover,
+body.dark-mode .cancel-btn:hover,
+body.dark-mode .cancel-profile-btn:hover {
+  background: #475569;
+}
+
+
+/* =========================================================
+   DARK MODE - BACK TO DASHBOARD
+   ========================================================= */
+
+body.dark-mode .back-dashboard-btn {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+
+body.dark-mode .back-dashboard-btn:hover {
+  background: #e2e8f0;
+}
+
+
+/* =========================================================
+   DARK MODE - DELETE BUTTON
+   ========================================================= */
+
+body.dark-mode .delete-btn {
+  background: #7f1d1d;
+  color: #fecaca;
+}
+
+
+body.dark-mode .delete-btn:hover {
+  background: #991b1b;
+}
+
+
+/* =========================================================
+   DARK MODE - EDIT BUTTON
+   ========================================================= */
+
+body.dark-mode .edit-btn {
+  background: #1d4ed8;
+  color: #dbeafe;
+}
+
+
+body.dark-mode .edit-btn:hover {
+  background: #2563eb;
+}
+
+
+/* =========================================================
+   DARK MODE - PROFILE
+   ========================================================= */
+
+body.dark-mode .profile-email {
+  color: #94a3b8;
+}
+
+
+body.dark-mode .profile-info span {
+  color: #94a3b8;
+}
+
+
+body.dark-mode .profile-info strong {
+  color: #f8fafc;
+}
+
+
+body.dark-mode .profile-view {
+  color: #e5e7eb;
+}
+
+
+body.dark-mode .view-item {
+  border-color: #334155;
+}
+
+
+body.dark-mode .view-item span {
+  color: #94a3b8;
+}
+
+
+body.dark-mode .view-item strong {
+  color: #f8fafc;
+}
+
+
+body.dark-mode .view-item p {
+  color: #cbd5e1;
+}
+
+
+/* =========================================================
+   DARK MODE - PROFILE STATISTICS
+   ========================================================= */
+
+body.dark-mode .statistics-header h2 {
+  color: #f8fafc;
+}
+
+
+body.dark-mode .statistics-header p {
+  color: #94a3b8;
+}
+
+
+body.dark-mode .income-value {
+  color: #4ade80;
+}
+
+
+body.dark-mode .expense-value {
+  color: #f87171;
+}
+
+
+body.dark-mode .balance-value {
+  color: #60a5fa;
+}
+
+
+/* =========================================================
+   DARK MODE - FORM LABELS
+   ========================================================= */
+
+body.dark-mode label {
+  color: #e5e7eb;
+}
+
+
+/* =========================================================
+   DARK MODE - NAVBAR
+   ========================================================= */
+
+body.dark-mode .navbar {
+  background: #020617;
+  color: #f8fafc;
+}
+
+
+body.dark-mode .navbar a {
+  color: #e5e7eb;
+}
+
+
+body.dark-mode .navbar a:hover {
+  color: #60a5fa;
+}
+
+
+body.dark-mode .logo {
+  color: #f8fafc;
+}
+
+
+/* =========================================================
+   DARK MODE - SIDEBAR
+   ========================================================= */
+
+body.dark-mode .sidebar {
+  background: #020617;
+  color: #e5e7eb;
+}
+
+
+body.dark-mode .sidebar a {
+  color: #cbd5e1;
+}
+
+
+body.dark-mode .sidebar a:hover {
+  background: #1e293b;
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   DARK MODE - DASHBOARD PREVIEW
+   ========================================================= */
+
+body.dark-mode .dashboard-preview {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+
+/* =========================================================
+   DARK MODE - PROGRESS BARS
+   ========================================================= */
+
+body.dark-mode .progress-container,
+body.dark-mode .progress-bar-background {
+  background: #334155;
+}
+
+
+/* =========================================================
+   DARK MODE - CHART BACKGROUND
+   ========================================================= */
+
+body.dark-mode .chart-container,
+body.dark-mode .chart-wrapper {
+  background: #1e293b;
+}
+
+
+/* =========================================================
+   DARK MODE - REPORTS
+   ========================================================= */
+
+body.dark-mode .report-header h1,
+body.dark-mode .reports-header h1 {
+  color: #f8fafc;
+}
+
+
+body.dark-mode .report-header p,
+body.dark-mode .reports-header p {
+  color: #94a3b8;
+}
+
+
+body.dark-mode .report-filters,
+body.dark-mode .filters-section {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+
+body.dark-mode .report-table,
+body.dark-mode .reports-table {
+  background: #1e293b;
+}
+
+
+/* =========================================================
+   DARK MODE - ANALYTICS
+   ========================================================= */
+
+body.dark-mode .analytics-header h1 {
+  color: #f8fafc;
+}
+
+
+body.dark-mode .analytics-header p {
+  color: #94a3b8;
+}
+
+
+body.dark-mode .analytics-section {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+
+/* =========================================================
+   DARK MODE - BUDGET
+   ========================================================= */
+
+body.dark-mode .budget-page h1,
+body.dark-mode .budget-page h2,
+body.dark-mode .budget-page h3 {
+  color: #f8fafc;
+}
+
+
+body.dark-mode .budget-page p {
+  color: #94a3b8;
+}
+
+
+body.dark-mode .budget-form,
+body.dark-mode .budget-summary,
+body.dark-mode .budget-card {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+
+/* =========================================================
+   DARK MODE - ADD EXPENSE
+   ========================================================= */
+
+body.dark-mode .expense-header h1 {
+  color: #f8fafc;
+}
+
+
+body.dark-mode .expense-header p {
+  color: #94a3b8;
+}
+
+
+body.dark-mode .expense-form {
+  background: #1e293b;
+  color: #e5e7eb;
+  border-color: #334155;
+}
+
+
+/* =========================================================
+   DARK MODE - TRANSACTIONS
+   ========================================================= */
+
+body.dark-mode .transactions-header h1 {
+  color: #f8fafc;
+}
+
+
+body.dark-mode .transactions-header p {
+  color: #94a3b8;
+}
+
+
+body.dark-mode .transaction-table-container {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+
+/* =========================================================
+   DARK MODE - MODAL
+   ========================================================= */
+
+body.dark-mode .modal,
+body.dark-mode .modal-content,
+body.dark-mode .edit-modal {
+  background: #1e293b;
+  color: #e5e7eb;
+  border-color: #334155;
+}
+
+
+body.dark-mode .modal h2,
+body.dark-mode .modal h3,
+body.dark-mode .edit-modal h2,
+body.dark-mode .edit-modal h3 {
+  color: #f8fafc;
+}
+
+
+/* =========================================================
+   DARK MODE - EMPTY STATES
+   ========================================================= */
+
+body.dark-mode .empty-state {
+  color: #94a3b8;
+}
+
+
+/* =========================================================
+   DARK MODE - SETTINGS
+   ========================================================= */
+
+body.dark-mode .settings-header h1 {
+  color: #f8fafc;
+}
+
+
+body.dark-mode .settings-header p {
+  color: #94a3b8;
+}
+
+
+body.dark-mode .settings-section {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+
+body.dark-mode .settings-section-header h2 {
+  color: #f8fafc;
+}
+
+
+body.dark-mode .settings-section-header p {
+  color: #94a3b8;
+}
+
+
+body.dark-mode .setting-item {
+  border-bottom-color: #334155;
+}
+
+
+body.dark-mode .setting-item h3 {
+  color: #f8fafc;
+}
+
+
+body.dark-mode .setting-item p {
+  color: #94a3b8;
+}
+
+
+/* =========================================================
+   DARK MODE - SETTINGS SWITCH
+   ========================================================= */
+
+body.dark-mode .switch input:checked + .slider {
+  background: #60a5fa;
+}
+
+
+/* =========================================================
+   DARK MODE - SCROLLBAR
+   ========================================================= */
+
+body.dark-mode::-webkit-scrollbar {
+  width: 10px;
+}
+
+
+body.dark-mode::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+
+body.dark-mode::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 10px;
+}
+
+
+body.dark-mode::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+
+/* =========================================================
+   LIGHT MODE - SCROLLBAR
+   ========================================================= */
+
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+
+body::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+
+body::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL SCREENS
+   ========================================================= */
+
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+}
+

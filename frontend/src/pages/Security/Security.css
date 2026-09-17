@@ -1,0 +1,831 @@
+
+/* ==========================================
+   SECURITY PAGE
+========================================== */
+
+.security-page {
+  min-height: 100vh;
+  background: #f5f7fb;
+  font-family: Arial, sans-serif;
+  color: #172033;
+}
+
+
+/* ==========================================
+   HERO
+========================================== */
+
+.security-hero {
+  min-height: 380px;
+  padding: 70px 8%;
+
+  background: linear-gradient(
+    135deg,
+    #061329,
+    #10264a
+  );
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  color: white;
+}
+
+.security-hero-content {
+  max-width: 650px;
+}
+
+.security-tag {
+  display: inline-block;
+
+  padding: 8px 16px;
+
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
+  border-radius: 30px;
+
+  font-size: 13px;
+  font-weight: bold;
+
+  letter-spacing: 1px;
+}
+
+.security-hero h1 {
+  margin: 25px 0 15px;
+
+  font-size: 52px;
+
+  line-height: 1.1;
+}
+
+.security-hero h1 span {
+  color: #6ea8fe;
+}
+
+.security-hero p {
+  max-width: 600px;
+
+  font-size: 18px;
+
+  line-height: 1.7;
+
+  color: #cbd5e1;
+}
+
+.security-icon-large {
+  width: 180px;
+  height: 180px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 80px;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+
+/* ==========================================
+   SECURITY FEATURES
+========================================== */
+
+.security-features {
+  padding: 80px 8%;
+}
+
+.security-heading {
+  max-width: 700px;
+
+  margin: 0 auto 50px;
+
+  text-align: center;
+}
+
+.security-heading > span {
+  font-size: 13px;
+
+  font-weight: bold;
+
+  letter-spacing: 2px;
+
+  color: #3974d8;
+}
+
+.security-heading h2 {
+  margin: 15px 0;
+
+  font-size: 36px;
+}
+
+.security-heading p {
+  color: #667085;
+
+  line-height: 1.7;
+}
+
+
+/* ==========================================
+   SECURITY CARDS
+========================================== */
+
+.security-grid {
+  max-width: 1200px;
+
+  margin: auto;
+
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 25px;
+}
+
+.security-card {
+  padding: 30px;
+
+  background: white;
+
+  border: 1px solid #e5e9f2;
+
+  border-radius: 16px;
+
+  transition: 0.3s;
+
+  box-shadow:
+    0 5px 20px rgba(0, 0, 0, 0.04);
+}
+
+.security-card:hover {
+  transform: translateY(-6px);
+
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+.security-card-icon {
+  width: 55px;
+  height: 55px;
+
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 27px;
+
+  background: #edf4ff;
+
+  margin-bottom: 20px;
+}
+
+.security-card h3 {
+  margin-bottom: 10px;
+
+  font-size: 20px;
+}
+
+.security-card p {
+  color: #667085;
+
+  line-height: 1.6;
+
+  font-size: 15px;
+}
+
+
+/* ==========================================
+   CHANGE PASSWORD SECTION
+========================================== */
+
+.change-password-section {
+  max-width: 1100px;
+
+  margin: 10px auto 80px;
+
+  padding: 45px;
+
+  background: white;
+
+  border: 1px solid #e5e9f2;
+
+  border-radius: 20px;
+
+  display: grid;
+
+  grid-template-columns: 0.9fr 1.1fr;
+
+  gap: 55px;
+
+  align-items: center;
+
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.05);
+}
+
+
+/* ==========================================
+   CHANGE PASSWORD HEADING
+========================================== */
+
+.change-password-heading {
+  padding: 10px;
+}
+
+.change-password-heading > span {
+  display: inline-block;
+
+  font-size: 12px;
+
+  font-weight: bold;
+
+  letter-spacing: 2px;
+
+  color: #3974d8;
+
+  margin-bottom: 14px;
+}
+
+.change-password-heading h2 {
+  margin: 0 0 15px;
+
+  font-size: 34px;
+
+  line-height: 1.2;
+
+  color: #172033;
+}
+
+.change-password-heading p {
+  margin: 0;
+
+  max-width: 420px;
+
+  color: #667085;
+
+  font-size: 15px;
+
+  line-height: 1.7;
+}
+
+
+/* ==========================================
+   SECURITY INFORMATION BOX
+========================================== */
+
+.change-password-heading::after {
+  content:
+    "🔒  Your password is protected using secure hashing on the backend.";
+
+  display: block;
+
+  margin-top: 25px;
+
+  padding: 15px 17px;
+
+  background: #edf4ff;
+
+  border: 1px solid #dbe8ff;
+
+  border-radius: 12px;
+
+  color: #475467;
+
+  font-size: 13px;
+
+  line-height: 1.5;
+}
+
+
+/* ==========================================
+   PASSWORD FORM
+========================================== */
+
+.change-password-form {
+  padding: 30px;
+
+  background: #f8faff;
+
+  border: 1px solid #e2e8f2;
+
+  border-radius: 16px;
+}
+
+
+/* ==========================================
+   PASSWORD FIELD
+========================================== */
+
+.password-field {
+  margin-bottom: 20px;
+}
+
+.password-field label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-size: 14px;
+
+  font-weight: bold;
+
+  color: #344054;
+}
+
+.password-field input {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 14px 15px;
+
+  border: 1px solid #d0d5dd;
+
+  border-radius: 9px;
+
+  background: white;
+
+  color: #172033;
+
+  font-size: 14px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.password-field input::placeholder {
+  color: #98a2b3;
+}
+
+.password-field input:focus {
+  border-color: #3974d8;
+
+  box-shadow:
+    0 0 0 3px rgba(57, 116, 216, 0.12);
+}
+
+
+/* ==========================================
+   CHANGE PASSWORD BUTTON
+========================================== */
+
+.change-password-btn {
+  width: 100%;
+
+  margin-top: 5px;
+
+  padding: 14px 20px;
+
+  border: none;
+
+  border-radius: 9px;
+
+  background: #3974d8;
+
+  color: white;
+
+  font-size: 15px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.change-password-btn:hover {
+  background: #2f63bd;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 8px 20px rgba(57, 116, 216, 0.25);
+}
+
+.change-password-btn:active {
+  transform: translateY(0);
+}
+
+.change-password-btn:disabled {
+  opacity: 0.65;
+
+  cursor: not-allowed;
+
+  transform: none;
+
+  box-shadow: none;
+}
+
+
+/* ==========================================
+   SECURITY STATUS
+========================================== */
+
+.security-status {
+  max-width: 1100px;
+
+  margin: 20px auto 80px;
+
+  padding: 35px 40px;
+
+  background: white;
+
+  border-radius: 18px;
+
+  border: 1px solid #e5e9f2;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 25px;
+}
+
+.status-icon {
+  width: 65px;
+  height: 65px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: #e8f8ee;
+
+  color: #249653;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 30px;
+
+  font-weight: bold;
+}
+
+.security-status span {
+  font-size: 12px;
+
+  font-weight: bold;
+
+  letter-spacing: 1.5px;
+
+  color: #249653;
+}
+
+.security-status h2 {
+  margin: 8px 0;
+}
+
+.security-status p {
+  margin: 0;
+
+  color: #667085;
+}
+
+
+/* ==========================================
+   CTA
+========================================== */
+
+.security-cta {
+  padding: 70px 20px;
+
+  text-align: center;
+
+  background: #061329;
+
+  color: white;
+}
+
+.security-cta h2 {
+  font-size: 32px;
+
+  margin-bottom: 12px;
+}
+
+.security-cta p {
+  color: #cbd5e1;
+
+  margin-bottom: 25px;
+}
+
+.security-home-btn {
+  padding: 13px 25px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background: white;
+
+  color: #061329;
+
+  font-size: 15px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.security-home-btn:hover {
+  transform: translateY(-2px);
+}
+
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.security-footer {
+  padding: 35px 20px;
+
+  text-align: center;
+
+  background: #040d1c;
+
+  color: white;
+}
+
+.security-footer-logo {
+  font-size: 22px;
+
+  font-weight: bold;
+}
+
+.security-footer-logo span {
+  color: #6ea8fe;
+}
+
+.security-footer p {
+  color: #aab4c3;
+}
+
+.security-footer small {
+  color: #7d8796;
+}
+
+
+/* ==========================================
+   DARK MODE
+========================================== */
+
+body.dark-mode .security-page {
+  background: #0b1220;
+
+  color: #f9fafb;
+}
+
+
+/* Security Features */
+
+body.dark-mode .security-heading h2 {
+  color: #f9fafb;
+}
+
+body.dark-mode .security-heading p {
+  color: #aab4c3;
+}
+
+
+/* Security Cards */
+
+body.dark-mode .security-card {
+  background: #111827;
+
+  border-color: #293650;
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+body.dark-mode .security-card h3 {
+  color: #f9fafb;
+}
+
+body.dark-mode .security-card p {
+  color: #aab4c3;
+}
+
+body.dark-mode .security-card-icon {
+  background: #172033;
+}
+
+
+/* Change Password */
+
+body.dark-mode .change-password-section {
+  background: #111827;
+
+  border-color: #293650;
+
+  box-shadow:
+    0 10px 35px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .change-password-heading h2 {
+  color: #f9fafb;
+}
+
+body.dark-mode .change-password-heading p {
+  color: #aab4c3;
+}
+
+body.dark-mode .change-password-heading::after {
+  background: #172033;
+
+  border-color: #293650;
+
+  color: #b8c2d1;
+}
+
+body.dark-mode .change-password-form {
+  background: #182233;
+
+  border-color: #293650;
+}
+
+body.dark-mode .password-field label {
+  color: #e5e7eb;
+}
+
+body.dark-mode .password-field input {
+  background: #111827;
+
+  border-color: #374151;
+
+  color: #f9fafb;
+}
+
+body.dark-mode .password-field input::placeholder {
+  color: #6b7280;
+}
+
+body.dark-mode .password-field input:focus {
+  border-color: #6ea8fe;
+
+  box-shadow:
+    0 0 0 3px rgba(110, 168, 254, 0.12);
+}
+
+
+/* Security Status */
+
+body.dark-mode .security-status {
+  background: #111827;
+
+  border-color: #293650;
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+body.dark-mode .security-status h2 {
+  color: #f9fafb;
+}
+
+body.dark-mode .security-status p {
+  color: #aab4c3;
+}
+
+
+/* ==========================================
+   RESPONSIVE DESIGN
+========================================== */
+
+@media (max-width: 900px) {
+
+  .security-hero {
+    text-align: center;
+
+    flex-direction: column;
+
+    gap: 40px;
+  }
+
+  .security-hero h1 {
+    font-size: 42px;
+  }
+
+  .security-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+
+  /* Change Password */
+
+  .change-password-section {
+    margin: 10px 30px 70px;
+
+    padding: 35px;
+
+    grid-template-columns: 1fr;
+
+    gap: 30px;
+  }
+
+  .change-password-heading {
+    text-align: center;
+  }
+
+  .change-password-heading p {
+    margin: auto;
+  }
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+
+  .security-hero {
+    padding: 55px 25px;
+  }
+
+  .security-hero h1 {
+    font-size: 34px;
+  }
+
+  .security-hero p {
+    font-size: 16px;
+  }
+
+  .security-icon-large {
+    width: 130px;
+    height: 130px;
+
+    font-size: 55px;
+  }
+
+
+  /* Features */
+
+  .security-features {
+    padding: 60px 20px;
+  }
+
+  .security-heading h2 {
+    font-size: 28px;
+  }
+
+  .security-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  /* Change Password */
+
+  .change-password-section {
+    margin: 10px 20px 60px;
+
+    padding: 25px;
+
+    border-radius: 16px;
+  }
+
+  .change-password-heading h2 {
+    font-size: 28px;
+  }
+
+  .change-password-form {
+    padding: 22px;
+  }
+
+
+  /* Status */
+
+  .security-status {
+    margin: 10px 20px 60px;
+
+    padding: 25px;
+
+    flex-direction: column;
+
+    text-align: center;
+  }
+
+
+  /* CTA */
+
+  .security-cta h2 {
+    font-size: 26px;
+  }
+}
+
