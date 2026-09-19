@@ -2,7 +2,7 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const crypto = require("crypto");
-const User = require("../models/User");
+const User = require("../models/user");
 const sendResetEmail = require("../utils/emailService");
 
 const router = express.Router();
