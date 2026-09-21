@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import API_URL from "../../api";
 import "./AddExpense.css";
 
 function AddExpense() {
@@ -61,7 +62,6 @@ function AddExpense() {
       return;
     }
 
-    // Create the transaction data
     const transactionData = {
       userId: userId,
       amount: Number(formData.amount),
@@ -76,7 +76,7 @@ function AddExpense() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/expenses/add",
+        `${API_URL}/api/expenses/add`,
         {
           method: "POST",
           headers: {
@@ -88,16 +88,15 @@ function AddExpense() {
 
       const data = await response.json();
 
-      console.log("BACKEND SAVED TYPE:", data.expense.type);
-      console.log("FULL SAVED TRANSACTION:", data.expense);
       if (!response.ok) {
         alert(data.message || "Failed to add transaction.");
         return;
       }
 
-      alert(
-        `${formData.type} added successfully!`
-      );
+      console.log("BACKEND SAVED TYPE:", data.expense.type);
+      console.log("FULL SAVED TRANSACTION:", data.expense);
+
+      alert(`${formData.type} added successfully!`);
 
       navigate("/transactions");
     } catch (error) {

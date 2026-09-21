@@ -1,5 +1,7 @@
+
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import API_URL from "../../api";
 import "./Dashboard.css";
 
 function Dashboard() {
@@ -53,7 +55,7 @@ function Dashboard() {
         // LOAD TRANSACTIONS FROM MONGODB
         // ==========================================
         const transactionResponse = await fetch(
-          `http://localhost:5000/api/expenses/user/${storedUserId}`
+          `${API_URL}/api/expenses/user/${storedUserId}`
         );
 
         const transactionData =
@@ -74,7 +76,7 @@ function Dashboard() {
         // LOAD MONTHLY BUDGET FROM MONGODB
         // ==========================================
         const budgetResponse = await fetch(
-          `http://localhost:5000/api/budget/user/${storedUserId}`
+          `${API_URL}/api/budget/user/${storedUserId}`
         );
 
         const budgetData =
@@ -818,3 +820,4 @@ function Dashboard() {
 }
 
 export default Dashboard;
+

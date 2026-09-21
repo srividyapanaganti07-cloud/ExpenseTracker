@@ -1,6 +1,6 @@
-
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import API_URL from "../../api";
 import "./Register.css";
 
 function Register() {
@@ -28,7 +28,7 @@ function Register() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/auth/register",
+        `${API_URL}/api/auth/register`,
         {
           method: "POST",
           headers: {
@@ -83,7 +83,6 @@ function Register() {
             onChange={(e) => setName(e.target.value)}
           />
 
-
           <label>Email Address</label>
 
           <input
@@ -92,7 +91,6 @@ function Register() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-
 
           <label>Password</label>
 
@@ -119,13 +117,11 @@ function Register() {
 
           </div>
 
-
           <button type="submit">
             Create Account
           </button>
 
         </form>
-
 
         {error && (
           <p
@@ -138,7 +134,6 @@ function Register() {
           </p>
         )}
 
-
         {message && (
           <p
             style={{
@@ -150,12 +145,10 @@ function Register() {
           </p>
         )}
 
-
         <div className="login-text">
           Already have an account?
           <Link to="/login"> Login</Link>
         </div>
-
 
         <Link to="/" className="back-home">
           ← Back to Home
@@ -167,4 +160,3 @@ function Register() {
 }
 
 export default Register;
-

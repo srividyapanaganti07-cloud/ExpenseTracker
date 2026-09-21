@@ -1,5 +1,7 @@
+
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import API_URL from "../../api";
 import "./Transactions.css";
 
 function Transactions() {
@@ -38,7 +40,7 @@ function Transactions() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/expenses/user/${userId}`
+        `${API_URL}/api/expenses/user/${userId}`
       );
 
       const data = await response.json();
@@ -81,7 +83,7 @@ function Transactions() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/expenses/${id}`,
+        `${API_URL}/api/expenses/${id}`,
         {
           method: "DELETE",
         }
@@ -203,7 +205,7 @@ function Transactions() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/expenses/${editingTransaction._id}`,
+        `${API_URL}/api/expenses/${editingTransaction._id}`,
         {
           method: "PUT",
           headers: {
@@ -866,3 +868,4 @@ function Transactions() {
 }
 
 export default Transactions;
+

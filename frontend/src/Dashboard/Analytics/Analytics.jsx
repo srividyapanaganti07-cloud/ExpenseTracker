@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import API_URL from "../../api";
 import "./Analytics.css";
 
 function Analytics() {
@@ -25,7 +26,7 @@ function Analytics() {
         // LOAD TRANSACTIONS
         // ==========================================
         const transactionResponse = await fetch(
-          `http://localhost:5000/api/expenses/user/${userId}`
+          `${API_URL}/api/expenses/user/${userId}`
         );
 
         const transactionData =
@@ -46,7 +47,7 @@ function Analytics() {
         // LOAD MONTHLY BUDGET
         // ==========================================
         const budgetResponse = await fetch(
-          `http://localhost:5000/api/budget/user/${userId}`
+          `${API_URL}/api/budget/user/${userId}`
         );
 
         const budgetData =
@@ -217,7 +218,6 @@ function Analytics() {
 
       </header>
 
-
       {/* ==========================================
           SUMMARY CARDS
       ========================================== */}
@@ -238,7 +238,6 @@ function Analytics() {
 
         </div>
 
-
         {/* TOTAL EXPENSES */}
         <div className="analytics-card">
 
@@ -254,7 +253,6 @@ function Analytics() {
 
         </div>
 
-
         {/* BALANCE */}
         <div className="analytics-card">
 
@@ -269,7 +267,6 @@ function Analytics() {
           </h2>
 
         </div>
-
 
         {/* TOTAL TRANSACTIONS */}
         <div className="analytics-card">
@@ -287,7 +284,6 @@ function Analytics() {
         </div>
 
       </section>
-
 
       {/* ==========================================
           MAIN GRID
@@ -315,7 +311,6 @@ function Analytics() {
 
           </div>
 
-
           <div className="comparison-chart">
 
             {/* INCOME */}
@@ -335,7 +330,6 @@ function Analytics() {
 
               </div>
 
-
               <div className="comparison-track">
 
                 <div
@@ -351,7 +345,6 @@ function Analytics() {
               </div>
 
             </div>
-
 
             {/* EXPENSES */}
             <div className="comparison-item">
@@ -369,7 +362,6 @@ function Analytics() {
                 </strong>
 
               </div>
-
 
               <div className="comparison-track">
 
@@ -398,7 +390,6 @@ function Analytics() {
 
         </div>
 
-
         {/* ==========================================
             BUDGET USAGE
         ========================================== */}
@@ -424,7 +415,6 @@ function Analytics() {
 
           </div>
 
-
           <div className="budget-analytics-track">
 
             <div
@@ -442,7 +432,6 @@ function Analytics() {
             />
 
           </div>
-
 
           <div className="budget-analytics-details">
 
@@ -470,7 +459,6 @@ function Analytics() {
 
       </section>
 
-
       {/* ==========================================
           CATEGORY ANALYSIS
       ========================================== */}
@@ -491,7 +479,6 @@ function Analytics() {
           </div>
 
         </div>
-
 
         {categories.length > 0 ? (
 
@@ -529,7 +516,6 @@ function Analytics() {
 
                       </div>
 
-
                       <strong>
                         {formatAmount(
                           amount
@@ -537,7 +523,6 @@ function Analytics() {
                       </strong>
 
                     </div>
-
 
                     <div className="category-progress">
 
@@ -549,7 +534,6 @@ function Analytics() {
                       />
 
                     </div>
-
 
                     <small>
                       {percentage.toFixed(1)}%
@@ -591,7 +575,6 @@ function Analytics() {
 
       </section>
 
-
       {/* ==========================================
           INSIGHTS
       ========================================== */}
@@ -624,7 +607,6 @@ function Analytics() {
 
         </div>
 
-
         {/* AVERAGE EXPENSE */}
         <div className="insight-card">
 
@@ -654,7 +636,6 @@ function Analytics() {
 
         </div>
 
-
         {/* AVAILABLE BALANCE */}
         <div className="insight-card">
 
@@ -681,7 +662,6 @@ function Analytics() {
         </div>
 
       </section>
-
 
       {/* ==========================================
           ACTIONS

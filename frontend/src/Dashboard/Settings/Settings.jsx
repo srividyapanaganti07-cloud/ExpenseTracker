@@ -1,5 +1,7 @@
+
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import API_URL from "../../api";
 import "./Settings.css";
 
 function Settings() {
@@ -37,7 +39,7 @@ function Settings() {
 
       try {
         const response = await fetch(
-          `http://localhost:5000/api/settings/user/${userId}`
+          `${API_URL}/api/settings/user/${userId}`
         );
 
         const data = await response.json();
@@ -123,7 +125,7 @@ function Settings() {
       setSaving(true);
 
       const response = await fetch(
-        `http://localhost:5000/api/settings/user/${userId}`,
+        `${API_URL}/api/settings/user/${userId}`,
         {
           method: "PUT",
 
@@ -187,7 +189,7 @@ function Settings() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/settings/user/${userId}/reset`,
+        `${API_URL}/api/settings/user/${userId}/reset`,
         {
           method: "PUT",
 

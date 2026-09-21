@@ -1,6 +1,6 @@
-
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import API_URL from "../../api";
 import "./Login.css";
 
 function Login() {
@@ -15,7 +15,7 @@ function Login() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/auth/login",
+        `${API_URL}/api/auth/login`,
         {
           method: "POST",
           headers: {
@@ -31,96 +31,94 @@ function Login() {
       const data = await response.json();
 
       if (!response.ok) {
-        alert(data.message || "Login failed.");
+        alert(data.message || "Login failed");
         return;
       }
 
-      // Save logged-in user details
-      localStorage.setItem("userId", data.user.id);
+      // Save user information
+      localStorage.setItem("userId", data.user._id);
       localStorage.setItem("userName", data.user.name);
       localStorage.setItem("userEmail", data.user.email);
 
       alert("Login successful!");
 
-      // Replace Login page in browser history
+      // Go to dashboard
       navigate("/dashboard", { replace: true });
-
     } catch (error) {
       console.error("Login error:", error);
-      alert("Unable to connect to the backend server.");
+      alert("Unable to connect to the server.");
     }
   };
 
   return (
-    <div className="login-page">
+    <div className="login-container">
       <div className="login-box">
 
-        <div className="login-logo">₹</div>
-
-        <h1>Welcome Back</h1>
-        <p>Login to manage your expenses</p>
+        <h2>Login</h2>
+        <p>Welcome back! Please login to continue.</p>
 
         <form onSubmit={handleLogin}>
 
-          <label>Email Address</label>
-
-          <input
-            type="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-
-          <label>Password</label>
-
-          {/* Password field with Show/Hide button */}
-          <div className="password-container">
+          {/* Email */}
+          <div className="input-group">
+            <label>Email</label>
 
             <input
-              type={showPassword ? "text" : "password"}
-              placeholder="Enter your password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
+          </div>
 
-            <button
-              type="button"
-              className="show-password"
-              onClick={() => setShowPassword(!showPassword)}
-              aria-label={showPassword ? "Hide password" : "Show password"}
-            >
-              {showPassword ? "🙈" : "👁️"}
-            </button>
+          {/* Password */}
+          <div className="input-group">
+            <label>Password</label>
 
+            <div className="password-container">
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+
+              <button
+                type="button"
+                className="password-toggle"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? "🙈" : "👁️"}
+              </button>
+            </div>
           </div>
 
           {/* Forgot Password */}
-          <div className="forgot">
+          <div className="forgot-password">
             <Link to="/forgot-password">
               Forgot Password?
             </Link>
           </div>
 
-          <button type="submit">
+          {/* Login Button */}
+          <button
+            type="submit"
+            className="login-button"
+          >
             Login
           </button>
 
         </form>
 
         {/* Register */}
-        <div className="register-text">
-          Don't have an account?
+        <p className="register-link">
+          Don't have an account?{" "}
           <Link to="/register">
-            {" "}Register
+            Register
           </Link>
-        </div>
-
-        {/* Back to Home */}
-        <Link to="/" className="back-home">
-          ← Back to Home
-        </Link>
+        </p>
 
       </div>
     </div>
@@ -128,6 +126,3 @@ function Login() {
 }
 
 export default Login;
-
-
-

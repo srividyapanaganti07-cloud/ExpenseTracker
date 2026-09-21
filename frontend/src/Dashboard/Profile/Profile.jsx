@@ -1,5 +1,7 @@
+
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import API_URL from "../../api";
 import "./Profile.css";
 
 function Profile() {
@@ -31,7 +33,7 @@ function Profile() {
 
       try {
         const response = await fetch(
-          `http://localhost:5000/api/auth/profile/${userId}`
+          `${API_URL}/api/auth/profile/${userId}`
         );
 
         const data = await response.json();
@@ -91,7 +93,7 @@ function Profile() {
 
       try {
         const response = await fetch(
-          `http://localhost:5000/api/expenses/user/${userId}`
+          `${API_URL}/api/expenses/user/${userId}`
         );
 
         const data = await response.json();
@@ -146,7 +148,7 @@ function Profile() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/auth/profile/${userId}`,
+        `${API_URL}/api/auth/profile/${userId}`,
         {
           method: "PUT",
 

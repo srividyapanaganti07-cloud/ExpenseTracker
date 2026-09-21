@@ -6,7 +6,7 @@ const User = require("../models/user");
 const sendResetEmail = require("../utils/emailService");
 
 const router = express.Router();
-
+ 
 // ==========================================
 // REGISTER
 // ==========================================

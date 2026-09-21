@@ -1,5 +1,7 @@
+
 import { useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
+import API_URL from "../../api";
 import "./Security.css";
 
 function Security() {
@@ -62,7 +64,7 @@ function Security() {
       setChangingPassword(true);
 
       const response = await fetch(
-        `http://localhost:5000/api/auth/change-password/${userId}`,
+        `${API_URL}/api/auth/change-password/${userId}`,
         {
           method: "PUT",
 
@@ -498,3 +500,4 @@ function Security() {
 }
 
 export default Security;
+

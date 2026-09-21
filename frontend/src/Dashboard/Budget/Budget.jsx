@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import API_URL from "../../api";
 import "./Budget.css";
 
 function Budget() {
@@ -24,7 +25,7 @@ function Budget() {
         // GET BUDGET
         // ------------------------------------------
         const budgetResponse = await fetch(
-          `http://localhost:5000/api/budget/user/${userId}`
+          `${API_URL}/api/budget/user/${userId}`
         );
 
         const budgetData = await budgetResponse.json();
@@ -45,7 +46,7 @@ function Budget() {
         // GET TRANSACTIONS
         // ------------------------------------------
         const transactionResponse = await fetch(
-          `http://localhost:5000/api/expenses/user/${userId}`
+          `${API_URL}/api/expenses/user/${userId}`
         );
 
         const transactionData =
@@ -122,7 +123,7 @@ function Budget() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/budget/save",
+        `${API_URL}/api/budget/save`,
         {
           method: "POST",
           headers: {

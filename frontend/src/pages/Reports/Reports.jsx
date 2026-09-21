@@ -1,6 +1,8 @@
+
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import * as XLSX from "xlsx";
+import API_URL from "../../api";
 import "./Reports.css";
 
 function Reports() {
@@ -29,7 +31,7 @@ function Reports() {
 
       try {
         const response = await fetch(
-          `http://localhost:5000/api/expenses/user/${userId}`
+          `${API_URL}/api/expenses/user/${userId}`
         );
 
         const data = await response.json();
@@ -906,3 +908,4 @@ function Reports() {
 }
 
 export default Reports;
+

@@ -1,3 +1,4 @@
+
 import { useEffect } from "react";
 import {
   BrowserRouter,
@@ -29,62 +30,51 @@ import Security from "./pages/Security/Security";
 import ProtectedRoute from "./ProtectedRoute";
 
 import "./App.css";
+import API_URL from "./api";
 
 function App() {
   // Apply saved dark mode globally
   useEffect(() => {
-  const applySavedSettings = async () => {
-    const userId =
-      localStorage.getItem("userId");
+    const applySavedSettings = async () => {
+      const userId = localStorage.getItem("userId");
 
-    // No logged-in user
-    if (!userId) {
-      document.body.classList.remove(
-        "dark-mode"
-      );
-
-      return;
-    }
-
-    try {
-      const response = await fetch(
-        `http://localhost:5000/api/settings/user/${userId}`
-      );
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        console.error(
-          data.message ||
-            "Failed to load settings"
-        );
-
+      // No logged-in user
+      if (!userId) {
+        document.body.classList.remove("dark-mode");
         return;
       }
 
-      const savedSettings =
-        data.settings;
-
-      if (savedSettings.darkMode) {
-        document.body.classList.add(
-          "dark-mode"
+      try {
+        const response = await fetch(
+          `${API_URL}/api/settings/user/${userId}`
         );
-      } else {
-        document.body.classList.remove(
-          "dark-mode"
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          console.error(
+            data.message || "Failed to load settings"
+          );
+          return;
+        }
+
+        const savedSettings = data.settings;
+
+        if (savedSettings.darkMode) {
+          document.body.classList.add("dark-mode");
+        } else {
+          document.body.classList.remove("dark-mode");
+        }
+      } catch (error) {
+        console.error(
+          "Failed to load settings:",
+          error
         );
       }
+    };
 
-    } catch (error) {
-      console.error(
-        "Failed to load settings:",
-        error
-      );
-    }
-  };
-
-  applySavedSettings();
- }, []);
+    applySavedSettings();
+  }, []);
 
   return (
     <BrowserRouter>
@@ -110,14 +100,15 @@ function App() {
         />
 
         <Route
-         path="/forgot-password"
-         element={<ForgotPassword />}
+          path="/forgot-password"
+          element={<ForgotPassword />}
         />
 
         <Route
-        path="/reset-password/:token"
-        element={<ResetPassword />}
-       />
+          path="/reset-password/:token"
+          element={<ResetPassword />}
+        />
+
         {/* =====================================
             PROTECTED PAGES
         ===================================== */}
@@ -209,3 +200,4 @@ function App() {
 }
 
 export default App;
+
