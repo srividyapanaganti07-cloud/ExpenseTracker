@@ -22,7 +22,7 @@ function Reports() {
   // ==========================================
   useEffect(() => {
     const fetchTransactions = async () => {
-      const userId = localStorage.getItem("userId");
+      const userId = sessionStorage.getItem("userId");
 
       if (!userId) {
         console.log("No logged-in user found.");

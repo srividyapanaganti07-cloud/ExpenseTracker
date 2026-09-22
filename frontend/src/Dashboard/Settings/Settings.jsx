@@ -26,7 +26,7 @@ function Settings() {
   useEffect(() => {
     const fetchSettings = async () => {
       const userId =
-        localStorage.getItem("userId");
+        sessionStorage.getItem("userId");
 
       if (!userId) {
         console.log(
@@ -114,7 +114,7 @@ function Settings() {
   // ==========================================
   const handleSave = async () => {
     const userId =
-      localStorage.getItem("userId");
+      sessionStorage.getItem("userId");
 
     if (!userId) {
       alert("Please login first.");
@@ -180,7 +180,7 @@ function Settings() {
   // ==========================================
   const handleReset = async () => {
     const userId =
-      localStorage.getItem("userId");
+      sessionStorage.getItem("userId");
 
     if (!userId) {
       alert("Please login first.");
@@ -589,3 +589,4 @@ function Settings() {
 }
 
 export default Settings;
+

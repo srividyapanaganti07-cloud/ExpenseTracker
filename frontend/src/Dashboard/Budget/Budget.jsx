@@ -13,7 +13,7 @@ function Budget() {
   // ==========================================
   useEffect(() => {
     const fetchData = async () => {
-      const userId = localStorage.getItem("userId");
+      const userId = sessionStorage.getItem("userId");
 
       if (!userId) {
         console.log("No logged-in user found.");
@@ -107,8 +107,7 @@ function Budget() {
   const handleSaveBudget = async (e) => {
     e.preventDefault();
 
-    const userId = localStorage.getItem("userId");
-
+   const userId = sessionStorage.getItem("userId");
     if (!userId) {
       alert("Please login first.");
       return;

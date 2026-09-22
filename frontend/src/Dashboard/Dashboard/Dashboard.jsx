@@ -20,9 +20,9 @@ function Dashboard() {
   // LOGOUT
   // ==========================================
   const handleLogout = () => {
-    localStorage.removeItem("userId");
-    localStorage.removeItem("userName");
-    localStorage.removeItem("userEmail");
+    sessionStorage.removeItem("userId");
+    sessionStorage.removeItem("userName");
+    sessionStorage.removeItem("userEmail");
 
     navigate("/login");
   };
@@ -31,9 +31,9 @@ function Dashboard() {
   // LOAD USER DETAILS, TRANSACTIONS & BUDGET
   // ==========================================
   useEffect(() => {
-    const storedUserId = localStorage.getItem("userId");
-    const storedName = localStorage.getItem("userName");
-    const storedEmail = localStorage.getItem("userEmail");
+   const storedUserId = sessionStorage.getItem("userId");
+   const storedName = sessionStorage.getItem("userName");
+   const storedEmail = sessionStorage.getItem("userEmail");
 
     // If no user is logged in, go to Login
     if (!storedUserId) {

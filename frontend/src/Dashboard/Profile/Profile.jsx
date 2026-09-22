@@ -23,7 +23,7 @@ function Profile() {
   // ==========================================
   useEffect(() => {
     const fetchProfile = async () => {
-      const userId = localStorage.getItem("userId");
+      const userId = sessionStorage.getItem("userId");
 
       if (!userId) {
         console.log("No logged-in user found.");
@@ -56,13 +56,13 @@ function Profile() {
             "I manage my expenses and keep track of my financial goals.",
         });
 
-        // Keep localStorage synchronized
-        localStorage.setItem(
+        // Keep sessionStorage synchronized
+        sessionStorage.setItem(
           "userName",
           data.user.name
         );
 
-        localStorage.setItem(
+        sessionStorage.setItem(
           "userEmail",
           data.user.email
         );
@@ -84,7 +84,7 @@ function Profile() {
   // ==========================================
   useEffect(() => {
     const fetchTransactions = async () => {
-      const userId = localStorage.getItem("userId");
+      const userId = sessionStorage.getItem("userId");
 
       if (!userId) {
         console.log("No logged-in user found.");
@@ -134,7 +134,7 @@ function Profile() {
   const handleSave = async (e) => {
     e.preventDefault();
 
-    const userId = localStorage.getItem("userId");
+    const userId = sessionStorage.getItem("userId");
 
     if (!userId) {
       alert("Please login first.");
@@ -184,12 +184,12 @@ function Profile() {
       });
 
       // Keep login information synchronized
-      localStorage.setItem(
+      sessionStorage.setItem(
         "userName",
         data.user.name
       );
 
-      localStorage.setItem(
+      sessionStorage.setItem(
         "userEmail",
         data.user.email
       );
@@ -607,3 +607,4 @@ function Profile() {
 }
 
 export default Profile;
+

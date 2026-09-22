@@ -36,7 +36,7 @@ function App() {
   // Apply saved dark mode globally
   useEffect(() => {
     const applySavedSettings = async () => {
-      const userId = localStorage.getItem("userId");
+      const userId = sessionStorage.getItem("userId");
 
       // No logged-in user
       if (!userId) {

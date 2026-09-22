@@ -38,9 +38,9 @@ function Login() {
 
       // Save user information
       // Backend returns "id", not "_id"
-      localStorage.setItem("userId", data.user.id);
-      localStorage.setItem("userName", data.user.name);
-      localStorage.setItem("userEmail", data.user.email);
+      sessionStorage.setItem("userId", data.user.id);
+      sessionStorage.setItem("userName", data.user.name);
+      sessionStorage.setItem("userEmail", data.user.email);
 
       alert("Login successful!");
 

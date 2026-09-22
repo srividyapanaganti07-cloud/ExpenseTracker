@@ -53,9 +53,7 @@ function AddExpense() {
       alert("Please select a date.");
       return;
     }
-
-    const userId = localStorage.getItem("userId");
-
+     const userId = sessionStorage.getItem("userId");
     if (!userId) {
       alert("Please login first.");
       navigate("/login");

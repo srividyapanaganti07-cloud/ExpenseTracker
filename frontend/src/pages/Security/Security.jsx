@@ -28,8 +28,8 @@ function Security() {
   const handleChangePassword = async (e) => {
     e.preventDefault();
 
-    const userId =
-      localStorage.getItem("userId");
+  const userId =
+  sessionStorage.getItem("userId");
 
     if (!userId) {
       alert("Please login first.");

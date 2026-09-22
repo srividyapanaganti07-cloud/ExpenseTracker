@@ -14,7 +14,7 @@ function Analytics() {
   // ==========================================
   useEffect(() => {
     const fetchAnalyticsData = async () => {
-      const userId = localStorage.getItem("userId");
+     const userId = sessionStorage.getItem("userId");
 
       if (!userId) {
         console.log("No logged-in user found.");

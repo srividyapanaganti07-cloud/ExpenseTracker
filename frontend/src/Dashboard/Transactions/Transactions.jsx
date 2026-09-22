@@ -31,7 +31,7 @@ function Transactions() {
   // Fetch transactions from MongoDB
   // ==========================================
   const fetchTransactions = async () => {
-    const userId = localStorage.getItem("userId");
+   const userId = sessionStorage.getItem("userId");
 
     if (!userId) {
       alert("Please login first.");
