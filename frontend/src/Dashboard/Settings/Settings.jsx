@@ -1,10 +1,12 @@
 
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import API_URL from "../../api";
 import "./Settings.css";
 
 function Settings() {
+  const navigate = useNavigate();
+
   const defaultSettings = {
     notifications: true,
     emailAlerts: false,
@@ -13,11 +15,8 @@ function Settings() {
     compactView: false,
   };
 
-  const [settings, setSettings] =
-    useState(defaultSettings);
-
+  const [settings, setSettings] = useState(defaultSettings);
   const [loading, setLoading] = useState(true);
-
   const [saving, setSaving] = useState(false);
 
   // ==========================================
@@ -25,14 +24,10 @@ function Settings() {
   // ==========================================
   useEffect(() => {
     const fetchSettings = async () => {
-      const userId =
-        sessionStorage.getItem("userId");
+      const userId = sessionStorage.getItem("userId");
 
       if (!userId) {
-        console.log(
-          "No logged-in user found."
-        );
-
+        console.log("No logged-in user found.");
         setLoading(false);
         return;
       }
@@ -46,34 +41,24 @@ function Settings() {
 
         if (!response.ok) {
           console.error(
-            data.message ||
-              "Failed to fetch settings."
+            data.message || "Failed to fetch settings."
           );
 
           setLoading(false);
           return;
         }
 
-        const savedSettings =
-          data.settings;
+        const savedSettings = data.settings;
 
         setSettings({
-          notifications:
-            savedSettings.notifications,
-          emailAlerts:
-            savedSettings.emailAlerts,
-          budgetAlerts:
-            savedSettings.budgetAlerts,
-          darkMode:
-            savedSettings.darkMode,
-          compactView:
-            savedSettings.compactView,
+          notifications: savedSettings.notifications,
+          emailAlerts: savedSettings.emailAlerts,
+          budgetAlerts: savedSettings.budgetAlerts,
+          darkMode: savedSettings.darkMode,
+          compactView: savedSettings.compactView,
         });
       } catch (error) {
-        console.error(
-          "Settings fetch error:",
-          error
-        );
+        console.error("Settings fetch error:", error);
       } finally {
         setLoading(false);
       }
@@ -87,13 +72,9 @@ function Settings() {
   // ==========================================
   useEffect(() => {
     if (settings.darkMode) {
-      document.body.classList.add(
-        "dark-mode"
-      );
+      document.body.classList.add("dark-mode");
     } else {
-      document.body.classList.remove(
-        "dark-mode"
-      );
+      document.body.classList.remove("dark-mode");
     }
   }, [settings.darkMode]);
 
@@ -113,11 +94,11 @@ function Settings() {
   // SAVE SETTINGS TO MONGODB
   // ==========================================
   const handleSave = async () => {
-    const userId =
-      sessionStorage.getItem("userId");
+    const userId = sessionStorage.getItem("userId");
 
     if (!userId) {
       alert("Please login first.");
+      navigate("/login", { replace: true });
       return;
     }
 
@@ -128,11 +109,9 @@ function Settings() {
         `${API_URL}/api/settings/user/${userId}`,
         {
           method: "PUT",
-
           headers: {
             "Content-Type": "application/json",
           },
-
           body: JSON.stringify(settings),
         }
       );
@@ -141,35 +120,24 @@ function Settings() {
 
       if (!response.ok) {
         alert(
-          data.message ||
-            "Failed to save settings."
+          data.message || "Failed to save settings."
         );
         return;
       }
 
       setSettings({
-        notifications:
-          data.settings.notifications,
-        emailAlerts:
-          data.settings.emailAlerts,
-        budgetAlerts:
-          data.settings.budgetAlerts,
-        darkMode:
-          data.settings.darkMode,
-        compactView:
-          data.settings.compactView,
+        notifications: data.settings.notifications,
+        emailAlerts: data.settings.emailAlerts,
+        budgetAlerts: data.settings.budgetAlerts,
+        darkMode: data.settings.darkMode,
+        compactView: data.settings.compactView,
       });
 
       alert("Settings saved successfully!");
     } catch (error) {
-      console.error(
-        "Settings save error:",
-        error
-      );
+      console.error("Settings save error:", error);
 
-      alert(
-        "Unable to connect to the backend."
-      );
+      alert("Unable to connect to the backend.");
     } finally {
       setSaving(false);
     }
@@ -179,11 +147,11 @@ function Settings() {
   // RESET SETTINGS IN MONGODB
   // ==========================================
   const handleReset = async () => {
-    const userId =
-      sessionStorage.getItem("userId");
+    const userId = sessionStorage.getItem("userId");
 
     if (!userId) {
       alert("Please login first.");
+      navigate("/login", { replace: true });
       return;
     }
 
@@ -192,7 +160,6 @@ function Settings() {
         `${API_URL}/api/settings/user/${userId}/reset`,
         {
           method: "PUT",
-
           headers: {
             "Content-Type": "application/json",
           },
@@ -203,39 +170,26 @@ function Settings() {
 
       if (!response.ok) {
         alert(
-          data.message ||
-            "Failed to reset settings."
+          data.message || "Failed to reset settings."
         );
         return;
       }
 
       setSettings({
-        notifications:
-          data.settings.notifications,
-        emailAlerts:
-          data.settings.emailAlerts,
-        budgetAlerts:
-          data.settings.budgetAlerts,
-        darkMode:
-          data.settings.darkMode,
-        compactView:
-          data.settings.compactView,
+        notifications: data.settings.notifications,
+        emailAlerts: data.settings.emailAlerts,
+        budgetAlerts: data.settings.budgetAlerts,
+        darkMode: data.settings.darkMode,
+        compactView: data.settings.compactView,
       });
 
-      document.body.classList.remove(
-        "dark-mode"
-      );
+      document.body.classList.remove("dark-mode");
 
       alert("Settings reset successfully!");
     } catch (error) {
-      console.error(
-        "Settings reset error:",
-        error
-      );
+      console.error("Settings reset error:", error);
 
-      alert(
-        "Unable to connect to the backend."
-      );
+      alert("Unable to connect to the backend.");
     }
   };
 
@@ -251,13 +205,9 @@ function Settings() {
             padding: "60px",
           }}
         >
-          <h2>
-            Loading Settings...
-          </h2>
+          <h2>Loading Settings...</h2>
 
-          <p>
-            Please wait.
-          </p>
+          <p>Please wait.</p>
         </div>
       </div>
     );
@@ -269,304 +219,221 @@ function Settings() {
   return (
     <div
       className={`settings-page ${
-        settings.compactView
-          ? "compact-theme"
-          : ""
+        settings.compactView ? "compact-theme" : ""
       }`}
     >
-
       {/* HEADER */}
       <header className="settings-header">
-
         <div>
           <h1>Settings</h1>
 
           <p>
-            Manage your Expense Tracker
-            preferences.
+            Manage your Expense Tracker preferences.
           </p>
         </div>
 
-        <Link to="/dashboard">
-
-          <button className="back-dashboard-btn">
-            ← Dashboard
-          </button>
-
-        </Link>
-
+        <button
+          type="button"
+          className="back-dashboard-btn"
+          title="Go to Dashboard"
+          onClick={() => navigate("/dashboard")}
+        >
+          ← Dashboard
+        </button>
       </header>
 
       {/* NOTIFICATIONS */}
       <section className="settings-section">
-
         <div className="settings-section-header">
-
-          <h2>
-            🔔 Notifications
-          </h2>
+          <h2>🔔 Notifications</h2>
 
           <p>
-            Control how you receive
-            notifications and alerts.
+            Control how you receive notifications and
+            alerts.
           </p>
-
         </div>
 
         <div className="settings-list">
-
           {/* Notifications */}
           <div className="setting-item">
-
             <div>
-              <h3>
-                Enable Notifications
-              </h3>
+              <h3>Enable Notifications</h3>
 
               <p>
-                Receive notifications
-                about your account activity.
+                Receive notifications about your account
+                activity.
               </p>
             </div>
 
             <label className="switch">
-
               <input
                 type="checkbox"
                 name="notifications"
-                checked={
-                  settings.notifications
-                }
+                checked={settings.notifications}
                 onChange={handleChange}
               />
 
               <span className="slider"></span>
-
             </label>
-
           </div>
 
           {/* Email Alerts */}
           <div className="setting-item">
-
             <div>
-              <h3>
-                Email Alerts
-              </h3>
+              <h3>Email Alerts</h3>
 
               <p>
-                Receive important account
-                updates by email.
+                Receive important account updates by
+                email.
               </p>
             </div>
 
             <label className="switch">
-
               <input
                 type="checkbox"
                 name="emailAlerts"
-                checked={
-                  settings.emailAlerts
-                }
+                checked={settings.emailAlerts}
                 onChange={handleChange}
               />
 
               <span className="slider"></span>
-
             </label>
-
           </div>
 
           {/* Budget Alerts */}
           <div className="setting-item">
-
             <div>
-              <h3>
-                Budget Alerts
-              </h3>
+              <h3>Budget Alerts</h3>
 
               <p>
-                Get alerts when your spending
-                approaches your budget.
+                Get alerts when your spending approaches
+                your budget.
               </p>
             </div>
 
             <label className="switch">
-
               <input
                 type="checkbox"
                 name="budgetAlerts"
-                checked={
-                  settings.budgetAlerts
-                }
+                checked={settings.budgetAlerts}
                 onChange={handleChange}
               />
 
               <span className="slider"></span>
-
             </label>
-
           </div>
-
         </div>
-
       </section>
 
       {/* APPEARANCE */}
       <section className="settings-section">
-
         <div className="settings-section-header">
-
-          <h2>
-            🎨 Appearance
-          </h2>
+          <h2>🎨 Appearance</h2>
 
           <p>
-            Customize how the application
-            looks.
+            Customize how the application looks.
           </p>
-
         </div>
 
         <div className="settings-list">
-
           {/* DARK MODE */}
           <div className="setting-item">
-
             <div>
-              <h3>
-                Dark Mode
-              </h3>
+              <h3>Dark Mode</h3>
 
               <p>
-                Change the entire application
-                to a dark appearance.
+                Change the entire application to a dark
+                appearance.
               </p>
             </div>
 
             <label className="switch">
-
               <input
                 type="checkbox"
                 name="darkMode"
-                checked={
-                  settings.darkMode
-                }
+                checked={settings.darkMode}
                 onChange={handleChange}
               />
 
               <span className="slider"></span>
-
             </label>
-
           </div>
 
           {/* COMPACT VIEW */}
           <div className="setting-item">
-
             <div>
-              <h3>
-                Compact View
-              </h3>
+              <h3>Compact View</h3>
 
               <p>
-                Reduce spacing throughout
-                the settings page.
+                Reduce spacing throughout the settings
+                page.
               </p>
             </div>
 
             <label className="switch">
-
               <input
                 type="checkbox"
                 name="compactView"
-                checked={
-                  settings.compactView
-                }
+                checked={settings.compactView}
                 onChange={handleChange}
               />
 
               <span className="slider"></span>
-
             </label>
-
           </div>
-
         </div>
-
       </section>
 
       {/* ACCOUNT */}
       <section className="settings-section">
-
         <div className="settings-section-header">
-
-          <h2>
-            👤 Account
-          </h2>
+          <h2>👤 Account</h2>
 
           <p>
-            Manage your account-related
-            options.
+            Manage your account-related options.
           </p>
-
         </div>
 
         <div className="account-options">
-
           <Link
             to="/profile"
             className="account-option"
+            title="Open your profile"
           >
-
             <div>
-              <strong>
-                My Profile
-              </strong>
+              <strong>My Profile</strong>
 
               <span>
-                Update your personal
-                information.
+                Update your personal information.
               </span>
             </div>
 
-            <span className="arrow">
-              →
-            </span>
-
+            <span className="arrow">→</span>
           </Link>
 
           <Link
             to="/security"
             className="account-option"
+            title="Manage account security"
           >
-
             <div>
-              <strong>
-                Security
-              </strong>
+              <strong>Security</strong>
 
               <span>
-                Manage your account
-                security.
+                Manage your account security.
               </span>
             </div>
 
-            <span className="arrow">
-              →
-            </span>
-
+            <span className="arrow">→</span>
           </Link>
-
         </div>
-
       </section>
 
       {/* ACTION BUTTONS */}
       <div className="settings-actions">
-
         <button
           className="reset-settings-btn"
+          title="Reset settings to default"
           onClick={handleReset}
         >
           Reset Settings
@@ -574,19 +441,15 @@ function Settings() {
 
         <button
           className="save-settings-btn"
+          title="Save your settings"
           onClick={handleSave}
           disabled={saving}
         >
-          {saving
-            ? "Saving..."
-            : "Save Settings"}
+          {saving ? "Saving..." : "Save Settings"}
         </button>
-
       </div>
-
     </div>
   );
 }
 
 export default Settings;
-

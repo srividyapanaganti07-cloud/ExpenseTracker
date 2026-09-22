@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import API_URL from "../../api";
 import "./Budget.css";
 
 function Budget() {
+  const navigate = useNavigate();
+
   const [budget, setBudget] = useState(20000);
   const [budgetInput, setBudgetInput] = useState(20000);
   const [transactions, setTransactions] = useState([]);
@@ -28,7 +30,8 @@ function Budget() {
           `${API_URL}/api/budget/user/${userId}`
         );
 
-        const budgetData = await budgetResponse.json();
+        const budgetData =
+          await budgetResponse.json();
 
         if (budgetResponse.ok) {
           const savedBudget =
@@ -38,7 +41,8 @@ function Budget() {
           setBudgetInput(savedBudget);
         } else {
           console.error(
-            budgetData.message || "Failed to fetch budget."
+            budgetData.message ||
+              "Failed to fetch budget."
           );
         }
 
@@ -53,7 +57,9 @@ function Budget() {
           await transactionResponse.json();
 
         if (transactionResponse.ok) {
-          setTransactions(transactionData.expenses || []);
+          setTransactions(
+            transactionData.expenses || []
+          );
         } else {
           console.error(
             transactionData.message ||
@@ -88,10 +94,11 @@ function Budget() {
   // ==========================================
   // CALCULATE REMAINING BUDGET
   // ==========================================
-  const remaining = budget - totalExpenses;
+  const remaining =
+    budget - totalExpenses;
 
   // ==========================================
-  // CALCULATE PERCENTAGE USED
+  // CALCULATE EXACT PERCENTAGE USED
   // ==========================================
   const percentage =
     budget > 0
@@ -107,16 +114,21 @@ function Budget() {
   const handleSaveBudget = async (e) => {
     e.preventDefault();
 
-   const userId = sessionStorage.getItem("userId");
+    const userId =
+      sessionStorage.getItem("userId");
+
     if (!userId) {
       alert("Please login first.");
       return;
     }
 
-    const newBudget = Number(budgetInput);
+    const newBudget =
+      Number(budgetInput);
 
     if (!newBudget || newBudget <= 0) {
-      alert("Please enter a valid budget amount.");
+      alert(
+        "Please enter a valid budget amount."
+      );
       return;
     }
 
@@ -135,7 +147,8 @@ function Budget() {
         }
       );
 
-      const data = await response.json();
+      const data =
+        await response.json();
 
       if (!response.ok) {
         alert(
@@ -149,7 +162,9 @@ function Budget() {
       setBudget(newBudget);
       setBudgetInput(newBudget);
 
-      alert("Monthly budget updated successfully!");
+      alert(
+        "Monthly budget updated successfully!"
+      );
     } catch (error) {
       console.error(
         "Save budget error:",
@@ -166,13 +181,21 @@ function Budget() {
   // FORMAT AMOUNT
   // ==========================================
   const formatAmount = (amount) => {
-    return `₹${amount.toLocaleString("en-IN")}`;
+    return `₹${Number(amount).toLocaleString(
+      "en-IN",
+      {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }
+    )}`;
   };
 
   return (
     <div className="budget-page">
 
-      {/* HEADER */}
+      {/* ==========================================
+          HEADER
+      ========================================== */}
       <header className="budget-header">
 
         <div>
@@ -183,16 +206,23 @@ function Budget() {
           </p>
         </div>
 
-        <Link
-          to="/dashboard"
+        {/* BACK TO DASHBOARD */}
+        <button
+          type="button"
           className="back-dashboard"
+          title="Go to Dashboard"
+          onClick={() =>
+            navigate("/dashboard")
+          }
         >
           ← Dashboard
-        </Link>
+        </button>
 
       </header>
 
-      {/* BUDGET SUMMARY */}
+      {/* ==========================================
+          BUDGET SUMMARY
+      ========================================== */}
       <section className="budget-summary">
 
         <div className="budget-card">
@@ -245,7 +275,9 @@ function Budget() {
 
       </section>
 
-      {/* BUDGET PROGRESS */}
+      {/* ==========================================
+          BUDGET PROGRESS
+      ========================================== */}
       <section className="budget-container">
 
         <div className="budget-section-header">
@@ -259,7 +291,7 @@ function Budget() {
           </div>
 
           <strong>
-            {Math.round(percentage)}%
+            {percentage.toFixed(2)}%
           </strong>
 
         </div>
@@ -284,7 +316,9 @@ function Budget() {
           <span>
             Spent:{" "}
             <strong>
-              {formatAmount(totalExpenses)}
+              {formatAmount(
+                totalExpenses
+              )}
             </strong>
           </span>
 
@@ -328,7 +362,9 @@ function Budget() {
 
       </section>
 
-      {/* SET BUDGET */}
+      {/* ==========================================
+          SET BUDGET
+      ========================================== */}
       <section className="budget-container">
 
         <div className="budget-section-header">
@@ -358,7 +394,8 @@ function Budget() {
             <input
               id="budget"
               type="number"
-              min="1"
+              min="0.01"
+              step="0.01"
               value={budgetInput}
               onChange={(e) =>
                 setBudgetInput(
@@ -374,6 +411,7 @@ function Budget() {
           <button
             type="submit"
             className="save-budget-btn"
+            title="Save monthly budget"
           >
             Save Budget
           </button>
@@ -382,12 +420,15 @@ function Budget() {
 
       </section>
 
-      {/* QUICK ACTIONS */}
+      {/* ==========================================
+          QUICK ACTIONS
+      ========================================== */}
       <section className="budget-actions">
 
         <Link
           to="/add-expense"
           className="budget-action-card"
+          title="Add a new transaction"
         >
           ➕
           <span>
@@ -398,6 +439,7 @@ function Budget() {
         <Link
           to="/transactions"
           className="budget-action-card"
+          title="View all transactions"
         >
           💸
           <span>
@@ -408,6 +450,7 @@ function Budget() {
         <Link
           to="/dashboard"
           className="budget-action-card"
+          title="Go to Dashboard"
         >
           📊
           <span>
@@ -422,3 +465,4 @@ function Budget() {
 }
 
 export default Budget;
+

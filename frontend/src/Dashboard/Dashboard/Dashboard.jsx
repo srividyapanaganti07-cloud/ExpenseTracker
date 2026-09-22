@@ -7,13 +7,12 @@ import "./Dashboard.css";
 function Dashboard() {
   const navigate = useNavigate();
 
+  // ==========================================
+  // STATE
+  // ==========================================
   const [transactions, setTransactions] = useState([]);
-
-  // Logged-in user details
   const [userName, setUserName] = useState("User");
   const [userEmail, setUserEmail] = useState("");
-
-  // Monthly budget from MongoDB
   const [monthlyBudget, setMonthlyBudget] = useState(20000);
 
   // ==========================================
@@ -24,23 +23,46 @@ function Dashboard() {
     sessionStorage.removeItem("userName");
     sessionStorage.removeItem("userEmail");
 
-    navigate("/login");
+    // Go to Home and prevent returning to Dashboard
+    navigate("/", { replace: true });
   };
 
   // ==========================================
-  // LOAD USER DETAILS, TRANSACTIONS & BUDGET
+  // LOAD DASHBOARD DATA
   // ==========================================
   useEffect(() => {
-   const storedUserId = sessionStorage.getItem("userId");
-   const storedName = sessionStorage.getItem("userName");
-   const storedEmail = sessionStorage.getItem("userEmail");
+    // ------------------------------------------
+    // HANDLE BROWSER BACK BUTTON
+    // Dashboard → Back → Home
+    // ------------------------------------------
+    window.history.pushState(null, "", window.location.href);
+
+    const handleBack = () => {
+      navigate("/", { replace: true });
+    };
+
+    window.addEventListener("popstate", handleBack);
+
+    // ------------------------------------------
+    // GET LOGGED-IN USER
+    // ------------------------------------------
+    const storedUserId = sessionStorage.getItem("userId");
+    const storedName = sessionStorage.getItem("userName");
+    const storedEmail = sessionStorage.getItem("userEmail");
 
     // If no user is logged in, go to Login
     if (!storedUserId) {
-      navigate("/login");
-      return;
+      navigate("/login", { replace: true });
+
+      return () => {
+        window.removeEventListener(
+          "popstate",
+          handleBack
+        );
+      };
     }
 
+    // Set user details
     if (storedName) {
       setUserName(storedName);
     }
@@ -49,11 +71,14 @@ function Dashboard() {
       setUserEmail(storedEmail);
     }
 
+    // ------------------------------------------
+    // FETCH TRANSACTIONS AND BUDGET
+    // ------------------------------------------
     const fetchDashboardData = async () => {
       try {
-        // ==========================================
-        // LOAD TRANSACTIONS FROM MONGODB
-        // ==========================================
+        // ========================================
+        // LOAD TRANSACTIONS
+        // ========================================
         const transactionResponse = await fetch(
           `${API_URL}/api/expenses/user/${storedUserId}`
         );
@@ -72,9 +97,9 @@ function Dashboard() {
           );
         }
 
-        // ==========================================
-        // LOAD MONTHLY BUDGET FROM MONGODB
-        // ==========================================
+        // ========================================
+        // LOAD MONTHLY BUDGET
+        // ========================================
         const budgetResponse = await fetch(
           `${API_URL}/api/budget/user/${storedUserId}`
         );
@@ -101,10 +126,20 @@ function Dashboard() {
     };
 
     fetchDashboardData();
+
+    // ------------------------------------------
+    // CLEANUP
+    // ------------------------------------------
+    return () => {
+      window.removeEventListener(
+        "popstate",
+        handleBack
+      );
+    };
   }, [navigate]);
 
   // ==========================================
-  // CALCULATE ALL INCOME
+  // CALCULATE TOTAL INCOME
   // ==========================================
   const totalIncome = transactions
     .filter(
@@ -118,7 +153,7 @@ function Dashboard() {
     );
 
   // ==========================================
-  // CALCULATE ALL EXPENSES
+  // CALCULATE TOTAL EXPENSES
   // ==========================================
   const totalExpenses = transactions
     .filter(
@@ -148,7 +183,11 @@ function Dashboard() {
   // ==========================================
   const formatAmount = (amount) => {
     return `₹${Number(amount).toLocaleString(
-      "en-IN"
+      "en-IN",
+      {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }
     )}`;
   };
 
@@ -171,6 +210,9 @@ function Dashboard() {
         Number(transaction.amount);
     });
 
+  // ==========================================
+  // CATEGORY ICONS
+  // ==========================================
   const categoryIcons = {
     Food: "🍔",
     Transport: "🚌",
@@ -181,6 +223,7 @@ function Dashboard() {
     Other: "📱",
   };
 
+  // Get top 5 expense categories
   const categories = Object.entries(
     categoryTotals
   )
@@ -190,9 +233,7 @@ function Dashboard() {
   // ==========================================
   // RECENT TRANSACTIONS
   // ==========================================
-  const recentTransactions = [
-    ...transactions,
-  ]
+  const recentTransactions = [...transactions]
     .sort(
       (a, b) =>
         new Date(b.createdAt) -
@@ -215,12 +256,15 @@ function Dashboard() {
   const expenseBarHeight =
     (totalExpenses / maxChartValue) * 180;
 
+  // ==========================================
+  // UI
+  // ==========================================
   return (
     <div className="dashboard">
 
-      {/* ==========================================
+      {/* ======================================
           SIDEBAR
-      ========================================== */}
+      ====================================== */}
       <aside className="sidebar">
 
         <div className="sidebar-top">
@@ -234,6 +278,7 @@ function Dashboard() {
             <Link
               to="/dashboard"
               className="nav-item active"
+              title="Go to Dashboard"
             >
               <span>🏠</span>
               Dashboard
@@ -242,6 +287,7 @@ function Dashboard() {
             <Link
               to="/transactions"
               className="nav-item"
+              title="View Transactions"
             >
               <span>💸</span>
               Transactions
@@ -250,6 +296,7 @@ function Dashboard() {
             <Link
               to="/analytics"
               className="nav-item"
+              title="View Analytics"
             >
               <span>📊</span>
               Analytics
@@ -258,6 +305,7 @@ function Dashboard() {
             <Link
               to="/budget"
               className="nav-item"
+              title="Manage Budget"
             >
               <span>💰</span>
               Budget
@@ -266,6 +314,7 @@ function Dashboard() {
             <Link
               to="/add-expense"
               className="nav-item"
+              title="Add a new transaction"
             >
               <span>➕</span>
               Add Expense
@@ -274,6 +323,7 @@ function Dashboard() {
             <Link
               to="/settings"
               className="nav-item"
+              title="Open Settings"
             >
               <span>⚙️</span>
               Settings
@@ -282,24 +332,26 @@ function Dashboard() {
           </nav>
         </div>
 
-        {/* LOGOUT BUTTON */}
+        {/* LOGOUT */}
         <button
+          type="button"
           onClick={handleLogout}
           className="logout-btn"
+          title="Logout from your account"
         >
           🚪 Logout
         </button>
 
       </aside>
 
-      {/* ==========================================
+      {/* ======================================
           MAIN CONTENT
-      ========================================== */}
+      ====================================== */}
       <main className="main-content">
 
-        {/* ==========================================
+        {/* ====================================
             TOP BAR
-        ========================================== */}
+        ==================================== */}
         <header className="topbar">
 
           <div className="welcome">
@@ -317,32 +369,27 @@ function Dashboard() {
           <Link
             to="/profile"
             className="profile"
+            title="Open your profile"
           >
-
             <div className="profile-icon">
               👤
             </div>
 
             <div className="profile-info">
-
-              <strong>
-                {userName}
-              </strong>
+              <strong>{userName}</strong>
 
               <small>
                 {userEmail ||
                   "Personal Account"}
               </small>
-
             </div>
-
           </Link>
 
         </header>
 
-        {/* ==========================================
+        {/* ====================================
             SUMMARY CARDS
-        ========================================== */}
+        ==================================== */}
         <section className="summary-cards">
 
           {/* BALANCE */}
@@ -439,9 +486,9 @@ function Dashboard() {
 
         </section>
 
-        {/* ==========================================
+        {/* ====================================
             CHARTS
-        ========================================== */}
+        ==================================== */}
         <section className="dashboard-grid">
 
           {/* INCOME VS EXPENSES */}
@@ -481,13 +528,11 @@ function Dashboard() {
                     )}px`,
                   }}
                 >
-
                   <span>
                     {formatAmount(
                       totalIncome
                     )}
                   </span>
-
                 </div>
 
                 <small>
@@ -508,13 +553,11 @@ function Dashboard() {
                     )}px`,
                   }}
                 >
-
                   <span>
                     {formatAmount(
                       totalExpenses
                     )}
                   </span>
-
                 </div>
 
                 <small>
@@ -553,10 +596,8 @@ function Dashboard() {
             <div className="category-list">
 
               {categories.length > 0 ? (
-
                 categories.map(
                   ([category, amount]) => (
-
                     <div
                       className="category-item"
                       key={category}
@@ -581,12 +622,9 @@ function Dashboard() {
                       </strong>
 
                     </div>
-
                   )
                 )
-
               ) : (
-
                 <div className="no-transactions">
 
                   <h3>
@@ -599,7 +637,6 @@ function Dashboard() {
                   </p>
 
                 </div>
-
               )}
 
             </div>
@@ -608,9 +645,9 @@ function Dashboard() {
 
         </section>
 
-        {/* ==========================================
+        {/* ====================================
             RECENT TRANSACTIONS
-        ========================================== */}
+        ==================================== */}
         <section className="dashboard-box transactions-box">
 
           <div className="box-header">
@@ -627,12 +664,16 @@ function Dashboard() {
 
             </div>
 
-            <Link to="/add-expense">
-
-              <button className="add-btn">
+            <Link
+              to="/add-expense"
+              title="Add a new transaction"
+            >
+              <button
+                type="button"
+                className="add-btn"
+              >
                 + Add Transaction
               </button>
-
             </Link>
 
           </div>
@@ -717,12 +758,16 @@ function Dashboard() {
                 to see it here.
               </p>
 
-              <Link to="/add-expense">
-
-                <button className="add-transaction-btn">
+              <Link
+                to="/add-expense"
+                title="Add a new transaction"
+              >
+                <button
+                  type="button"
+                  className="add-transaction-btn"
+                >
                   + Add Transaction
                 </button>
-
               </Link>
 
             </div>
@@ -733,7 +778,10 @@ function Dashboard() {
 
             <div className="view-all">
 
-              <Link to="/transactions">
+              <Link
+                to="/transactions"
+                title="View all transactions"
+              >
                 View All Transactions →
               </Link>
 
@@ -743,14 +791,15 @@ function Dashboard() {
 
         </section>
 
-        {/* ==========================================
+        {/* ====================================
             QUICK ACTIONS
-        ========================================== */}
+        ==================================== */}
         <section className="quick-actions">
 
           <Link
             to="/add-expense"
             className="quick-card"
+            title="Add a new transaction"
           >
 
             <span>➕</span>
@@ -772,6 +821,7 @@ function Dashboard() {
           <Link
             to="/budget"
             className="quick-card"
+            title="Manage Budget"
           >
 
             <span>🎯</span>
@@ -793,6 +843,7 @@ function Dashboard() {
           <Link
             to="/analytics"
             className="quick-card"
+            title="View Analytics"
           >
 
             <span>📊</span>
@@ -820,4 +871,3 @@ function Dashboard() {
 }
 
 export default Dashboard;
-

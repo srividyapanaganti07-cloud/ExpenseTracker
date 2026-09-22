@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API_URL from "../../api";
@@ -53,10 +54,12 @@ function AddExpense() {
       alert("Please select a date.");
       return;
     }
-     const userId = sessionStorage.getItem("userId");
+
+    const userId = sessionStorage.getItem("userId");
+
     if (!userId) {
       alert("Please login first.");
-      navigate("/login");
+      navigate("/login", { replace: true });
       return;
     }
 
@@ -96,7 +99,10 @@ function AddExpense() {
 
       alert(`${formData.type} added successfully!`);
 
-      navigate("/transactions");
+      // Replace Add Expense in browser history.
+      // So: Dashboard → Add Expense → Save → Transactions
+      // Then Transactions → Back goes to Dashboard.
+      navigate("/transactions", { replace: true });
     } catch (error) {
       console.error("Add transaction error:", error);
       alert("Unable to connect to the backend server.");
@@ -138,7 +144,8 @@ function AddExpense() {
             type="number"
             name="amount"
             placeholder="Enter amount"
-            min="1"
+            min="0.01"
+            step="0.01"
             value={formData.amount}
             onChange={handleChange}
             required
@@ -230,6 +237,7 @@ function AddExpense() {
           <button
             type="button"
             className="cancel-btn"
+            title="Go to Dashboard"
             onClick={() => navigate("/dashboard")}
           >
             Cancel
@@ -238,6 +246,7 @@ function AddExpense() {
           <button
             type="submit"
             className="save-expense-btn"
+            title="Save transaction"
           >
             Save Transaction
           </button>

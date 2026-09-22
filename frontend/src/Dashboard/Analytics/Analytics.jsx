@@ -1,9 +1,12 @@
+
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import API_URL from "../../api";
 import "./Analytics.css";
 
 function Analytics() {
+  const navigate = useNavigate();
+
   const [transactions, setTransactions] = useState([]);
 
   // Monthly budget from MongoDB
@@ -14,7 +17,7 @@ function Analytics() {
   // ==========================================
   useEffect(() => {
     const fetchAnalyticsData = async () => {
-     const userId = sessionStorage.getItem("userId");
+      const userId = sessionStorage.getItem("userId");
 
       if (!userId) {
         console.log("No logged-in user found.");
@@ -177,7 +180,10 @@ function Analytics() {
   const formatAmount = (amount) => {
     return `₹${Number(
       amount
-    ).toLocaleString("en-IN")}`;
+    ).toLocaleString("en-IN", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    })}`;
   };
 
   // ==========================================
@@ -209,12 +215,17 @@ function Analytics() {
           </p>
         </div>
 
-        <Link
-          to="/dashboard"
+        {/* Back to Dashboard */}
+        <button
+          type="button"
           className="analytics-back-btn"
+          title="Go to Dashboard"
+          onClick={() =>
+            navigate("/dashboard")
+          }
         >
           ← Dashboard
-        </Link>
+        </button>
 
       </header>
 
@@ -561,7 +572,10 @@ function Analytics() {
               spending analysis.
             </p>
 
-            <Link to="/add-expense">
+            <Link
+              to="/add-expense"
+              title="Add a new transaction"
+            >
 
               <button>
                 + Add Expense
@@ -622,9 +636,7 @@ function Analytics() {
 
             <h3>
               {formatAmount(
-                Math.round(
-                  averageExpense
-                )
+                averageExpense
               )}
             </h3>
 
@@ -671,6 +683,7 @@ function Analytics() {
         <Link
           to="/add-expense"
           className="analytics-action"
+          title="Add a new transaction"
         >
           ➕ Add Transaction
         </Link>
@@ -678,6 +691,7 @@ function Analytics() {
         <Link
           to="/transactions"
           className="analytics-action"
+          title="View all transactions"
         >
           💸 View Transactions
         </Link>
@@ -685,6 +699,7 @@ function Analytics() {
         <Link
           to="/budget"
           className="analytics-action"
+          title="Manage your monthly budget"
         >
           🎯 Manage Budget
         </Link>
@@ -696,3 +711,4 @@ function Analytics() {
 }
 
 export default Analytics;
+

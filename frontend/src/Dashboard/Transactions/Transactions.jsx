@@ -1,10 +1,12 @@
 
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import API_URL from "../../api";
 import "./Transactions.css";
 
 function Transactions() {
+  const navigate = useNavigate();
+
   const [transactions, setTransactions] = useState([]);
   const [search, setSearch] = useState("");
   const [categoryFilter, setCategoryFilter] =
@@ -31,10 +33,11 @@ function Transactions() {
   // Fetch transactions from MongoDB
   // ==========================================
   const fetchTransactions = async () => {
-   const userId = sessionStorage.getItem("userId");
+    const userId = sessionStorage.getItem("userId");
 
     if (!userId) {
       alert("Please login first.");
+      navigate("/login", { replace: true });
       return;
     }
 
@@ -133,16 +136,12 @@ function Transactions() {
     setEditingTransaction({
       ...transaction,
 
-      // Make sure type always has a value
       type: transaction.type || "Expense",
 
-      // If category is standard, keep it.
-      // Otherwise show Custom Category.
       category: isStandardCategory
         ? transaction.category
         : "Custom Category",
 
-      // Store existing custom category
       customCategory: isStandardCategory
         ? ""
         : transaction.category || "",
@@ -171,14 +170,12 @@ function Transactions() {
   const handleSaveEdit = async (e) => {
     e.preventDefault();
 
-    // Determine final category
     const finalCategory =
       editingTransaction.category ===
       "Custom Category"
         ? editingTransaction.customCategory.trim()
         : editingTransaction.category;
 
-    // Validate custom category
     if (
       editingTransaction.category ===
         "Custom Category" &&
@@ -188,7 +185,6 @@ function Transactions() {
       return;
     }
 
-    // Validate amount
     if (
       !editingTransaction.amount ||
       Number(editingTransaction.amount) <= 0
@@ -197,7 +193,6 @@ function Transactions() {
       return;
     }
 
-    // Validate date
     if (!editingTransaction.date) {
       alert("Please select a date.");
       return;
@@ -338,9 +333,13 @@ function Transactions() {
   // Format amount
   // ==========================================
   const formatAmount = (amount) => {
-    return `₹${Number(
-      amount
-    ).toLocaleString("en-IN")}`;
+    return `₹${Number(amount).toLocaleString(
+      "en-IN",
+      {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }
+    )}`;
   };
 
   return (
@@ -360,11 +359,38 @@ function Transactions() {
           </p>
         </div>
 
-        <Link to="/add-expense">
-          <button className="add-transaction-btn">
-            + Add Expense
+        {/* Navigation buttons */}
+        <div
+          style={{
+            display: "flex",
+            gap: "10px",
+            alignItems: "center",
+          }}
+        >
+
+          {/* Back to Dashboard */}
+          <button
+            type="button"
+            className="add-transaction-btn"
+            title="Go to Dashboard"
+            onClick={() =>
+              navigate("/dashboard")
+            }
+          >
+            ← Dashboard
           </button>
-        </Link>
+
+          {/* Add Expense */}
+          <Link
+            to="/add-expense"
+            title="Add a new transaction"
+          >
+            <button className="add-transaction-btn">
+              + Add Expense
+            </button>
+          </Link>
+
+        </div>
 
       </header>
 
@@ -536,11 +562,8 @@ function Transactions() {
                       ? "+"
                       : "-"}{" "}
 
-                    ₹
-                    {Number(
+                    {formatAmount(
                       transaction.amount
-                    ).toLocaleString(
-                      "en-IN"
                     )}
 
                   </strong>
@@ -551,7 +574,7 @@ function Transactions() {
                     {/* Edit */}
                     <button
                       type="button"
-                      title="Edit"
+                      title="Edit transaction"
                       onClick={() =>
                         handleEdit(
                           transaction
@@ -564,7 +587,7 @@ function Transactions() {
                     {/* Delete */}
                     <button
                       type="button"
-                      title="Delete"
+                      title="Delete transaction"
                       onClick={() =>
                         handleDelete(
                           transaction._id
@@ -594,7 +617,10 @@ function Transactions() {
                 it here.
               </p>
 
-              <Link to="/add-expense">
+              <Link
+                to="/add-expense"
+                title="Add a new transaction"
+              >
 
                 <button className="add-transaction-btn">
                   + Add Transaction
@@ -632,9 +658,7 @@ function Transactions() {
               onSubmit={handleSaveEdit}
             >
 
-              {/* ==================================
-                  TRANSACTION TYPE
-              ================================== */}
+              {/* TRANSACTION TYPE */}
               <label>
                 Transaction Type
               </label>
@@ -660,9 +684,7 @@ function Transactions() {
 
               </select>
 
-              {/* ==================================
-                  AMOUNT
-              ================================== */}
+              {/* AMOUNT */}
               <label>
                 Amount
               </label>
@@ -670,7 +692,8 @@ function Transactions() {
               <input
                 type="number"
                 name="amount"
-                min="1"
+                min="0.01"
+                step="0.01"
                 value={
                   editingTransaction.amount
                 }
@@ -680,9 +703,7 @@ function Transactions() {
                 required
               />
 
-              {/* ==================================
-                  CATEGORY
-              ================================== */}
+              {/* CATEGORY */}
               <label>
                 Category
               </label>
@@ -731,9 +752,7 @@ function Transactions() {
 
               </select>
 
-              {/* ==================================
-                  CUSTOM CATEGORY
-              ================================== */}
+              {/* CUSTOM CATEGORY */}
               {editingTransaction.category ===
                 "Custom Category" && (
 
@@ -755,9 +774,7 @@ function Transactions() {
 
               )}
 
-              {/* ==================================
-                  DATE
-              ================================== */}
+              {/* DATE */}
               <label>
                 Date
               </label>
@@ -774,9 +791,7 @@ function Transactions() {
                 required
               />
 
-              {/* ==================================
-                  PAYMENT
-              ================================== */}
+              {/* PAYMENT */}
               <label>
                 Payment Method
               </label>
@@ -814,9 +829,7 @@ function Transactions() {
 
               </select>
 
-              {/* ==================================
-                  DESCRIPTION
-              ================================== */}
+              {/* DESCRIPTION */}
               <label>
                 Description
               </label>
@@ -833,13 +846,12 @@ function Transactions() {
                 placeholder="Enter description"
               />
 
-              {/* ==================================
-                  BUTTONS
-              ================================== */}
+              {/* BUTTONS */}
               <div className="edit-buttons">
 
                 <button
                   type="button"
+                  title="Cancel editing"
                   onClick={() =>
                     setEditingTransaction(
                       null
@@ -849,7 +861,10 @@ function Transactions() {
                   Cancel
                 </button>
 
-                <button type="submit">
+                <button
+                  type="submit"
+                  title="Save changes"
+                >
                   Save Changes
                 </button>
 
