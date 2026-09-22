@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import API_URL from "../../api";
@@ -36,7 +37,8 @@ function Login() {
       }
 
       // Save user information
-      localStorage.setItem("userId", data.user._id);
+      // Backend returns "id", not "_id"
+      localStorage.setItem("userId", data.user.id);
       localStorage.setItem("userName", data.user.name);
       localStorage.setItem("userEmail", data.user.email);
 
@@ -126,3 +128,4 @@ function Login() {
 }
 
 export default Login;
+

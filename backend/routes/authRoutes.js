@@ -1,4 +1,5 @@
 
+
 const express = require("express");
 const bcrypt = require("bcrypt");
 const crypto = require("crypto");
@@ -6,7 +7,7 @@ const User = require("../models/user");
 const sendResetEmail = require("../utils/emailService");
 
 const router = express.Router();
- 
+
 // ==========================================
 // REGISTER
 // ==========================================
@@ -20,7 +21,9 @@ router.post("/register", async (req, res) => {
       });
     }
 
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({
+      email: email.trim().toLowerCase(),
+    });
 
     if (existingUser) {
       return res.status(400).json({
@@ -31,8 +34,8 @@ router.post("/register", async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = new User({
-      name,
-      email,
+      name: name.trim(),
+      email: email.trim().toLowerCase(),
       password: hashedPassword,
     });
 
@@ -69,7 +72,9 @@ router.post("/login", async (req, res) => {
       });
     }
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({
+      email: email.trim().toLowerCase(),
+    });
 
     if (!user) {
       return res.status(401).json({
@@ -174,7 +179,7 @@ router.put("/profile/:userId", async (req, res) => {
 
     // Check if another account already uses this email
     const existingUser = await User.findOne({
-      email,
+      email: email.trim().toLowerCase(),
       _id: { $ne: userId },
     });
 
@@ -331,10 +336,12 @@ router.post("/forgot-password", async (req, res) => {
     }
 
     // Create a random reset token
-    const resetToken = crypto.randomBytes(32).toString("hex");
+    const resetToken =
+      crypto.randomBytes(32).toString("hex");
 
     // Token expires after 15 minutes
-    const resetTokenExpiry = Date.now() + 15 * 60 * 1000;
+    const resetTokenExpiry =
+      Date.now() + 15 * 60 * 1000;
 
     // Save reset token
     user.resetPasswordToken = resetToken;
@@ -343,8 +350,9 @@ router.post("/forgot-password", async (req, res) => {
     await user.save();
 
     // Reset password page
+    // Use the deployed Vercel frontend URL
     const resetLink =
-      `http://localhost:5173/reset-password/${resetToken}`;
+      `https://expense-tracker-ivory-zeta.vercel.app/reset-password/${resetToken}`;
 
     // Send reset email
     await sendResetEmail(
@@ -369,6 +377,7 @@ router.post("/forgot-password", async (req, res) => {
     });
   }
 });
+
 // ==========================================
 // RESET PASSWORD
 // ==========================================
@@ -387,7 +396,8 @@ router.post("/reset-password/:token", async (req, res) => {
     // Check password length
     if (newPassword.length < 6) {
       return res.status(400).json({
-        message: "Password must be at least 6 characters",
+        message:
+          "Password must be at least 6 characters",
       });
     }
 
@@ -402,15 +412,14 @@ router.post("/reset-password/:token", async (req, res) => {
     // Token invalid or expired
     if (!user) {
       return res.status(400).json({
-        message: "Password reset link is invalid or expired",
+        message:
+          "Password reset link is invalid or expired",
       });
     }
 
     // Hash new password
-    const hashedPassword = await bcrypt.hash(
-      newPassword,
-      10
-    );
+    const hashedPassword =
+      await bcrypt.hash(newPassword, 10);
 
     // Update password
     user.password = hashedPassword;
@@ -422,17 +431,21 @@ router.post("/reset-password/:token", async (req, res) => {
     await user.save();
 
     res.status(200).json({
-      message: "Password reset successfully",
+      message:
+        "Password reset successfully",
     });
 
   } catch (error) {
-    console.error("RESET PASSWORD ERROR:", error);
+    console.error(
+      "RESET PASSWORD ERROR:",
+      error
+    );
 
     res.status(500).json({
       message: "Server error",
     });
-   }
-  });
+  }
+});
 
 // ==========================================
 // EXPORT ROUTER
